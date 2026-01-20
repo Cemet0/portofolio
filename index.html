@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
+    <title>Micellar | Portfolio</title>
+    <meta name="title" content="Nabil Ananda Putra - Aspiring Web Developer | Portfolio">
+    <meta name="description" content="Mahasiswa Teknik Informatika Universitas Dian Nuswantoro yang sedang belajar web development. Portfolio berisi project HTML, CSS, JavaScript, PHP, Python, dan MySQL.">
+    <meta name="keywords" content="Nabil Ananda Putra, web developer, portfolio, mahasiswa teknik informatika, UDINUS, Semarang, HTML, CSS, JavaScript, PHP, Python, MySQL, web development">
+    <meta name="author" content="Nabil Ananda Putra">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Indonesian">
+    <meta name="revisit-after" content="7 days">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://micellar.netlify.app/">
+    <meta property="og:title" content="Nabil Ananda Putra - Aspiring Web Developer | Portfolio">
+    <meta property="og:description" content="Mahasiswa Teknik Informatika UDINUS yang sedang belajar web development. Lihat portfolio project saya!">
+    <meta property="og:image" content="https://micellar.netlify.app/assets/images/profile.gif">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="Micellar Portfolio">
+    <meta property="og:locale" content="id_ID">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://micellar.netlify.app/">
+    <meta property="twitter:title" content="Nabil Ananda Putra - Aspiring Web Developer">
+    <meta property="twitter:description" content="Mahasiswa Teknik Informatika UDINUS yang sedang belajar web development. Lihat portfolio project saya!">
+    <meta property="twitter:image" content="https://micellar.netlify.app/assets/images/profile.gif">
+    <meta name="twitter:creator" content="@nandointheskyy">
+    
+    <!-- Additional Meta Tags -->
+    <meta name="theme-color" content="#2c3e50">
+    <meta name="msapplication-TileColor" content="#2c3e50">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Micellar Portfolio">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://micellar.netlify.app/">
+    
+    <!-- Favicon (optional - add later) -->
+    <!-- <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"> -->
+    <!-- <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"> -->
+    <!-- <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"> -->
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="style.css" as="style">
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Theme color for mobile browsers -->
+    <meta name="theme-color" content="#ffffff">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top" onclick="launchScrollRocket(this)">
+        <i class="fas fa-rocket"></i>
+        <div class="scroll-fire-effect">
+            <div class="scroll-flame scroll-flame-1"></div>
+            <div class="scroll-flame scroll-flame-2"></div>
+            <div class="scroll-flame scroll-flame-3"></div>
+        </div>
+    </button>
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="nav-brand">
+                    <h2>Micellar</h2>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="#hero" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#about" class="nav-link">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#education" class="nav-link">Pendidikan</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#projects" class="nav-link">Portfolio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#skills" class="nav-link">Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#contact" class="nav-link">Contact</a>
+                    </li>
+                </ul>
+                <button class="theme-toggle desktop-theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                    <span class="theme-toggle-icon">🌙</span>
+                </button>
+                <div class="nav-toggle" id="mobileMenu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-avatar animate-on-scroll">
+                        <div class="avatar-placeholder floating">
+                            <img src="assets/images/profile.gif" alt="Profile" class="profile-image">
+                        </div>
+                    </div>
+                    <div class="hero-text animate-on-scroll">
+                        <h1 class="hero-title gradient-text">Nabil Ananda Putra</h1>
+                        <p class="hero-subtitle">
+                            <span class="typing-text"></span>
+                            <span class="typing-emoji"></span>
+                            <span class="typing-cursor">|</span>
+                        </p>
+                        <p class="hero-description">
+                            Mahasiswa Teknik Informatika yang sedang belajar dan mengembangkan kemampuan dalam web development. 
+                            Antusias untuk terus belajar teknologi baru dan menciptakan project-project yang bermanfaat.
+                        </p>
+                        <a href="#projects" class="hero-cta pulse">
+                            <span>Lihat Project Saya</span>
+                            <i class="fas fa-arrow-right" style="margin-left: 0.5rem; transition: transform 0.3s ease;"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about">
+            <div class="container">
+                <h2 class="section-title animate-on-scroll">About Me</h2>
+                <div class="about-content">
+                    <div class="about-text animate-on-scroll glass-intense">
+                        <p>
+                            Saya adalah mahasiswa Teknik Informatika di Universitas Dian Nuswantoro yang memiliki minat besar 
+                            terhadap dunia web development. Meskipun masih dalam tahap pembelajaran, saya selalu berusaha untuk 
+                            mengasah kemampuan programming dan mengikuti perkembangan teknologi terbaru.
+                        </p>
+                        <p>
+                            Saya percaya bahwa dengan terus belajar dan berlatih, saya dapat berkontribusi dalam menciptakan 
+                            solusi digital yang bermanfaat. Setiap project yang saya kerjakan adalah bagian dari perjalanan 
+                            belajar saya untuk menjadi developer yang lebih baik.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section id="stats" class="stats">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-card animate-on-scroll">
+                        <div class="stat-icon">
+                            <i class="fas fa-project-diagram"></i>
+                        </div>
+                        <div class="stat-number" data-target="4">0</div>
+                        <div class="stat-label">Projects Completed</div>
+                    </div>
+
+                    <div class="stat-card animate-on-scroll">
+                        <div class="stat-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="stat-number" data-target="6">0</div>
+                        <div class="stat-label">Skills Mastered</div>
+                    </div>
+
+                    <div class="stat-card animate-on-scroll">
+                        <div class="stat-icon">
+                            <i class="fas fa-book-reader"></i>
+                        </div>
+                        <div class="stat-number" data-target="3">0</div>
+                        <div class="stat-label">Semesters in College</div>
+                    </div>
+
+                    <div class="stat-card animate-on-scroll">
+                        <div class="stat-icon">
+                            <i class="fas fa-coffee"></i>
+                        </div>
+                        <div class="stat-number" data-target="100">0</div>
+                        <div class="stat-label">Cups of Coffee</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="education">
+            <div class="container">
+                <h2 class="section-title animate-on-scroll">Perjalanan Pendidikan</h2>
+                <div class="education-grid">
+                    <!-- SD Card -->
+                    <div class="education-card animate-on-scroll" data-level="sd">
+                        <div class="education-icon">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                        <div class="education-content">
+                            <h3 class="education-title">Sekolah Dasar (SD)</h3>
+                            <p class="education-institution">SDN Bojong Salaman 2 Semarang</p>
+                            <div class="education-year">2011 - 2017</div>
+                            <div class="education-description">
+                                Memulai perjalanan pendidikan dengan dasar-dasar ilmu pengetahuan dan pembentukan karakter.
+                            </div>
+                        </div>
+                        <div class="education-level-badge">SD</div>
+                    </div>
+
+                    <!-- SMP Card -->
+                    <div class="education-card animate-on-scroll" data-level="smp">
+                        <div class="education-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div class="education-content">
+                            <h3 class="education-title">Sekolah Menengah Pertama (SMP)</h3>
+                            <p class="education-institution">SMPN 22 Semarang</p>
+                            <div class="education-year">2017 - 2020</div>
+                            <div class="education-description">
+                                Mengembangkan kemampuan berpikir kritis dan mulai mengenal berbagai bidang ilmu pengetahuan.
+                            </div>
+                        </div>
+                        <div class="education-level-badge">SMP</div>
+                    </div>
+
+                    <!-- SMA Card -->
+                    <div class="education-card animate-on-scroll" data-level="sma">
+                        <div class="education-icon">
+                            <i class="fas fa-atom"></i>
+                        </div>
+                        <div class="education-content">
+                            <h3 class="education-title">Sekolah Menengah Atas (SMA)</h3>
+                            <p class="education-institution">SMA Kesatrian 1 Semarang</p>
+                            <div class="education-year">2020 - 2023</div>
+                            <div class="education-description">
+                                Fokus pada bidang IPA dan mulai tertarik dengan dunia teknologi dan pemrograman.
+                            </div>
+                        </div>
+                        <div class="education-level-badge">SMA</div>
+                    </div>
+
+                    <!-- Universitas Card -->
+                    <div class="education-card animate-on-scroll" data-level="universitas">
+                        <div class="education-icon">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <div class="education-content">
+                            <h3 class="education-title">Universitas</h3>
+                            <p class="education-institution">Universitas Dian Nuswantoro Semarang</p>
+                            <div class="education-year">2024 - Sekarang</div>
+                            <div class="education-description">
+                                Mendalami ilmu komputer dan teknologi informasi dengan fokus pada pengembangan web dan software.
+                            </div>
+                        </div>
+                        <div class="education-level-badge">UNIV</div>
+                    </div>
+                </div>
+
+                <!-- Education Timeline -->
+                <div class="education-timeline animate-on-scroll">
+                    <div class="timeline-line"></div>
+                    <div class="timeline-points">
+                        <div class="timeline-point" data-year="2011">
+                            <div class="point-marker"></div>
+                            <div class="point-label">Mulai SD</div>
+                        </div>
+                        <div class="timeline-point" data-year="2017">
+                            <div class="point-marker"></div>
+                            <div class="point-label">Masuk SMP</div>
+                        </div>
+                        <div class="timeline-point" data-year="2020">
+                            <div class="point-marker"></div>
+                            <div class="point-label">Masuk SMA</div>
+                        </div>
+                        <div class="timeline-point" data-year="2024">
+                            <div class="point-marker"></div>
+                            <div class="point-label">Kuliah</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="projects">
+            <div class="container">
+                <h2 class="section-title animate-on-scroll">Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card animate-on-scroll">
+                        <div class="project-image">
+                            <img src="assets/images/website_projek.png" alt="Website PHP & Bootstrap Project" class="project-img">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Website PHP & Bootstrap</h3>
+                            <p class="project-description">
+                                Website dinamis menggunakan PHP dan Bootstrap dengan fitur lengkap dan responsive design.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">PHP</span>
+                                <span class="tech-tag">Bootstrap</span>
+                                <span class="tech-tag">MySQL</span>
+                                <span class="tech-tag">JavaScript</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card animate-on-scroll">
+                        <div class="project-image">
+                            <img src="assets/images/figma_projek.png" alt="UI/UX Design Figma Project" class="project-img">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">UI/UX Design Figma</h3>
+                            <p class="project-description">
+                                Desain antarmuka pengguna modern dan intuitif menggunakan Figma dengan fokus pada user experience.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Figma</span>
+                                <span class="tech-tag">UI Design</span>
+                                <span class="tech-tag">UX Research</span>
+                                <span class="tech-tag">Prototyping</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card animate-on-scroll">
+                        <div class="project-image">
+                            <img src="assets/images/arduino_projek.png" alt="Arduino Tinkercad Project" class="project-img">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Arduino Tinkercad Project</h3>
+                            <p class="project-description">
+                                Simulasi dan pengembangan project Arduino menggunakan Tinkercad untuk berbagai aplikasi IoT.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Arduino</span>
+                                <span class="tech-tag">Tinkercad</span>
+                                <span class="tech-tag">C++</span>
+                                <span class="tech-tag">IoT</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card animate-on-scroll">
+                        <div class="project-image">
+                            <img src="assets/images/porto.jpg" alt="Portfolio Website Project" class="project-img">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Portfolio Website</h3>
+                            <p class="project-description">
+                                Website portfolio personal dengan desain modern, responsive, dan interactive menggunakan HTML, CSS, dan JavaScript murni.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">HTML5</span>
+                                <span class="tech-tag">CSS3</span>
+                                <span class="tech-tag">JavaScript</span>
+                                <span class="tech-tag">Responsive</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="skills">
+            <div class="container">
+                <h2 class="section-title animate-on-scroll">Skills</h2>
+                <div class="skills-badges animate-on-scroll">
+                    <div class="skill-badge html-badge" data-skill="html">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" class="skill-badge-icon">
+                        <span class="skill-badge-text">HTML5</span>
+                    </div>
+                    <div class="skill-badge css-badge" data-skill="css">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" class="skill-badge-icon">
+                        <span class="skill-badge-text">CSS3</span>
+                    </div>
+                    <div class="skill-badge js-badge" data-skill="javascript">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" class="skill-badge-icon">
+                        <span class="skill-badge-text">JavaScript</span>
+                    </div>
+                    <div class="skill-badge php-badge" data-skill="php">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-plain.svg" alt="PHP" class="skill-badge-icon">
+                        <span class="skill-badge-text">PHP</span>
+                    </div>
+                    <div class="skill-badge python-badge" data-skill="python">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" class="skill-badge-icon">
+                        <span class="skill-badge-text">Python</span>
+                    </div>
+                    <div class="skill-badge mysql-badge" data-skill="mysql">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" class="skill-badge-icon">
+                        <span class="skill-badge-text">MySQL</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Coffee & Code Section -->
+        <section id="contact" class="coffee-code">
+            <div class="container">
+                <h2 class="section-title animate-on-scroll">Coffee & Code ☕</h2>
+                <p class="coffee-subtitle animate-on-scroll">Ngopi sambil ngoding? That's my vibe! Hit me up di social media atau lihat fun stats ku 🚀</p>
+                
+                <!-- Fun Stats Cards -->
+                <div class="fun-stats-grid">
+                    <div class="fun-stat-card animate-on-scroll">
+                        <div class="fun-stat-emoji">☕</div>
+                        <div class="fun-stat-number">100+</div>
+                        <div class="fun-stat-label">Cups of Coffee</div>
+                        <div class="fun-stat-desc">Fuel for coding sessions</div>
+                    </div>
+
+                    <div class="fun-stat-card animate-on-scroll">
+                        <div class="fun-stat-emoji">💻</div>
+                        <div class="fun-stat-number">1000+</div>
+                        <div class="fun-stat-label">Lines of Code</div>
+                        <div class="fun-stat-desc">And still counting...</div>
+                    </div>
+
+                    <div class="fun-stat-card animate-on-scroll">
+                        <div class="fun-stat-emoji">🌙</div>
+                        <div class="fun-stat-number">50+</div>
+                        <div class="fun-stat-label">Late Night Coding</div>
+                        <div class="fun-stat-desc">When bugs don't sleep</div>
+                    </div>
+
+                    <div class="fun-stat-card animate-on-scroll">
+                        <div class="fun-stat-emoji">🎵</div>
+                        <div class="fun-stat-number">∞</div>
+                        <div class="fun-stat-label">Spotify Playlists</div>
+                        <div class="fun-stat-desc">Always coding with music</div>
+                    </div>
+                </div>
+
+                <!-- Social Connect -->
+                <div class="social-connect-wrapper">
+                    <h3 class="social-connect-title animate-on-scroll">Let's Connect! 🤝</h3>
+                    <div class="social-connect-grid">
+                        <!-- Instagram -->
+                        <a href="https://www.instagram.com/itsmecemet/" target="_blank" class="social-connect-card instagram-connect animate-on-scroll">
+                            <div class="social-connect-icon">
+                                <i class="fab fa-instagram"></i>
+                            </div>
+                            <div class="social-connect-info">
+                                <div class="social-connect-name">Instagram</div>
+                                <div class="social-connect-handle">@itsmecemet</div>
+                            </div>
+                        </a>
+
+                        <!-- TikTok -->
+                        <a href="https://www.tiktok.com/@micellar969" target="_blank" class="social-connect-card tiktok-connect animate-on-scroll">
+                            <div class="social-connect-icon">
+                                <i class="fab fa-tiktok"></i>
+                            </div>
+                            <div class="social-connect-info">
+                                <div class="social-connect-name">TikTok</div>
+                                <div class="social-connect-handle">@micellar969</div>
+                            </div>
+                        </a>
+
+                        <!-- Twitter -->
+                        <a href="https://x.com/nandointheskyy" target="_blank" class="social-connect-card twitter-connect animate-on-scroll">
+                            <div class="social-connect-icon">
+                                <i class="fab fa-twitter"></i>
+                            </div>
+                            <div class="social-connect-info">
+                                <div class="social-connect-name">Twitter</div>
+                                <div class="social-connect-handle">@nandointheskyy</div>
+                            </div>
+                        </a>
+
+                        <!-- GitHub -->
+                        <a href="https://github.com/Cemet0" target="_blank" class="social-connect-card github-connect animate-on-scroll">
+                            <div class="social-connect-icon">
+                                <i class="fab fa-github"></i>
+                            </div>
+                            <div class="social-connect-info">
+                                <div class="social-connect-name">GitHub</div>
+                                <div class="social-connect-handle">@Cemet0</div>
+                            </div>
+                        </a>
+
+                        <!-- Spotify -->
+                        <a href="https://open.spotify.com/playlist/45BV0x2zVV5JuojmJxhj8e?si=9d3fcf795a7845d5" target="_blank" class="social-connect-card spotify-connect animate-on-scroll">
+                            <div class="social-connect-icon">
+                                <i class="fab fa-spotify"></i>
+                            </div>
+                            <div class="social-connect-info">
+                                <div class="social-connect-name">Spotify</div>
+                                <div class="social-connect-handle">My Coding Playlists</div>
+                            </div>
+                        </a>
+
+                        <!-- Email -->
+                        <a href="mailto:cemetbigajil@gmail.com" class="social-connect-card email-connect animate-on-scroll">
+                            <div class="social-connect-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="social-connect-info">
+                                <div class="social-connect-name">Email</div>
+                                <div class="social-connect-handle">cemetbigaill@gmail.com</div>
+                            </div>
+                        </a>
+
+                        <!-- Location -->
+                        <div class="social-connect-card location-connect animate-on-scroll">
+                            <div class="social-connect-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="social-connect-info">
+                                <div class="social-connect-name">Location</div>
+                                <div class="social-connect-handle">Semarang, Indonesia</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Micellar. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Typing Animation
+        const typingText = document.querySelector('.typing-text');
+        const typingEmoji = document.querySelector('.typing-emoji');
+        const texts = [
+            { text: 'Web Developer', emoji: '💻' },
+            { text: 'Coffee Enthusiast', emoji: '☕' },
+            { text: 'Night Coder', emoji: '🌙' },
+            { text: 'UDINUS Student', emoji: '🎓' },
+            { text: 'Tech Explorer', emoji: '🚀' },
+            { text: 'Problem Solver', emoji: '💡' }
+        ];
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typingSpeed = 100;
+
+        function typeText() {
+            const currentItem = texts[textIndex];
+            const currentText = currentItem.text;
+            
+            if (isDeleting) {
+                typingText.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+                typingSpeed = 50;
+            } else {
+                typingText.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+                typingSpeed = 100;
+            }
+
+            // Update emoji when text is complete
+            if (charIndex === currentText.length && !isDeleting) {
+                typingEmoji.textContent = currentItem.emoji;
+            } else if (charIndex === 0 && isDeleting) {
+                typingEmoji.textContent = '';
+            }
+
+            if (!isDeleting && charIndex === currentText.length) {
+                // Pause at end
+                typingSpeed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                textIndex = (textIndex + 1) % texts.length;
+                typingSpeed = 500;
+            }
+
+            setTimeout(typeText, typingSpeed);
+        }
+
+        // Start typing animation after page load
+        window.addEventListener('load', () => {
+            setTimeout(typeText, 1000);
+        });
+
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const mobileThemeToggle = document.getElementById('mobileThemeToggle');
+        const body = document.body;
+        const themeIcon = document.querySelector('.theme-toggle-icon');
+        const mobileThemeIcon = document.querySelector('.theme-icon');
+        const mobileThemeText = document.querySelector('.theme-text');
+
+        // Check for saved theme preference or default to dark mode
+        const currentTheme = localStorage.getItem('theme') || 'dark';
+        body.setAttribute('data-theme', currentTheme);
+        updateThemeIcon(currentTheme);
+
+        // Desktop theme toggle
+        if (themeToggle) {
+            themeToggle.addEventListener('click', () => {
+                toggleTheme();
+            });
+        }
+
+        // Mobile theme toggle
+        if (mobileThemeToggle) {
+            mobileThemeToggle.addEventListener('click', () => {
+                toggleTheme();
+            });
+        }
+
+        function toggleTheme() {
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        }
+
+        function updateThemeIcon(theme) {
+            const isDark = theme === 'dark';
+            const icon = isDark ? '☀️' : '🌙';
+            const text = isDark ? 'Light Mode' : 'Dark Mode';
+            
+            if (themeIcon) themeIcon.textContent = icon;
+            if (mobileThemeIcon) mobileThemeIcon.textContent = icon;
+            if (mobileThemeText) mobileThemeText.textContent = text;
+        }
+
+        // Mobile menu toggle
+        const mobileMenu = document.getElementById('mobileMenu');
+        const navMenu = document.querySelector('.nav-menu');
+
+        mobileMenu.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Scroll Rocket Launch Effect
+        function launchScrollRocket(buttonElement) {
+            // Prevent multiple clicks during animation
+            if (buttonElement.classList.contains('scroll-launching')) {
+                return;
+            }
+            
+            // Add launching class and remove visible
+            buttonElement.classList.add('scroll-launching');
+            buttonElement.classList.remove('visible');
+            
+            // Scroll to top smoothly
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+            
+            // Add screen shake effect
+            document.body.style.animation = 'screen-shake 0.3s ease-in-out';
+            
+            // Reset after animation completes
+            setTimeout(() => {
+                buttonElement.classList.remove('scroll-launching');
+                document.body.style.animation = '';
+            }, 1500);
+        }
+
+        // Scroll to Top Button (update existing functionality)
+        const scrollToTopBtn = document.getElementById('scrollToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollToTopBtn.classList.add('visible');
+            } else {
+                scrollToTopBtn.classList.remove('visible');
+            }
+        });
+
+        // Active navigation link highlighting
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('section');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Scroll Animation Observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                    
+                    // Trigger counter animation for stat cards
+                    if (entry.target.classList.contains('stat-card')) {
+                        const statNumber = entry.target.querySelector('.stat-number');
+                        if (statNumber && !statNumber.classList.contains('counted')) {
+                            animateCounter(statNumber);
+                            statNumber.classList.add('counted');
+                        }
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe all elements with animate-on-scroll class
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Observe stat cards
+        document.querySelectorAll('.stat-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Animated Counter Function
+        function animateCounter(element) {
+            const target = parseInt(element.getAttribute('data-target'));
+            const duration = 2000; // 2 seconds
+            const increment = target / (duration / 16); // 60fps
+            let current = 0;
+
+            const updateCounter = () => {
+                current += increment;
+                if (current < target) {
+                    element.textContent = Math.floor(current);
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    element.textContent = target;
+                }
+            };
+
+            updateCounter();
+        }
+
+        // Form will be handled by Formspree directly (no JavaScript needed)
+
+        // Loading Screen
+        window.addEventListener('load', () => {
+            const loadingScreen = document.getElementById('loadingScreen');
+            setTimeout(() => {
+                loadingScreen.classList.add('fade-out');
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                }, 500);
+            }, 1000);
+        });
+
+        // Simplified Skill Badge Click Effects
+        document.querySelectorAll('.skill-badge').forEach(badge => {
+            badge.addEventListener('click', function() {
+                this.classList.add('clicked');
+                setTimeout(() => {
+                    this.classList.remove('clicked');
+                }, 600);
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+    </script>
+</body>
+</html>
