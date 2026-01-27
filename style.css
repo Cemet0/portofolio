@@ -645,7 +645,7 @@ body {
     border: 1px solid var(--glass-border);
     border-radius: 20px;
     flex-direction: column;
-    padding: 1rem;
+    padding: 1.5rem;
     max-height: 0;
     overflow: hidden;
     opacity: 0;
@@ -657,7 +657,7 @@ body {
   }
   
   .nav-menu.active {
-    max-height: 350px;
+    max-height: 400px;
     opacity: 1;
   }
   
