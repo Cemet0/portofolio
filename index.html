@@ -43,13 +43,10 @@
     <!-- Canonical URL -->
     <link rel="canonical" href="https://micellar.netlify.app/">
     
-    <!-- Favicon (optional - add later) -->
-    <!-- <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"> -->
-    <!-- <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"> -->
-    <!-- <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"> -->
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>">
     
     <!-- Preload critical resources -->
-    <link rel="preload" href="style.css" as="style">
     <link rel="stylesheet" href="style.css">
     
     <!-- Google Fonts -->
@@ -58,7 +55,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
     
     <!-- Theme color for mobile browsers -->
     <meta name="theme-color" content="#ffffff">
@@ -69,20 +66,14 @@
         <div class="loader"></div>
     </div>
 
-    <!-- Scroll to Top Button -->
-    <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top" onclick="launchScrollRocket(this)">
-        <i class="fas fa-rocket"></i>
-        <div class="scroll-fire-effect">
-            <div class="scroll-flame scroll-flame-1"></div>
-            <div class="scroll-flame scroll-flame-2"></div>
-            <div class="scroll-flame scroll-flame-3"></div>
-        </div>
-    </button>
+
     <header class="header">
         <div class="container">
             <nav class="nav">
                 <div class="nav-brand">
-                    <h2>Micellar</h2>
+                    <a href="#hero" class="nav-brand-link">
+                        <h2>Micellar</h2>
+                    </a>
                 </div>
                 <ul class="nav-menu">
                     <li class="nav-item">
@@ -128,18 +119,16 @@
                     </div>
                     <div class="hero-text animate-on-scroll">
                         <h1 class="hero-title gradient-text">Nabil Ananda Putra</h1>
-                        <p class="hero-subtitle">
+                        <div class="hero-subtitle">
                             <span class="typing-text"></span>
-                            <span class="typing-emoji"></span>
                             <span class="typing-cursor">|</span>
-                        </p>
+                        </div>
                         <p class="hero-description">
-                            Mahasiswa Teknik Informatika yang sedang belajar dan mengembangkan kemampuan dalam web development. 
-                            Antusias untuk terus belajar teknologi baru dan menciptakan project-project yang bermanfaat.
+                            Mahasiswa Teknik Informatika yang sedang belajar dan mengembangkan kemampuan dalam web development. Antusias untuk terus belajar teknologi baru dan menciptakan project-project yang bermanfaat.
                         </p>
-                        <a href="#projects" class="hero-cta pulse">
+                        <a href="#projects" class="hero-cta">
                             <span>Lihat Project Saya</span>
-                            <i class="fas fa-arrow-right" style="margin-left: 0.5rem; transition: transform 0.3s ease;"></i>
+                            <i class="fas fa-arrow-right hero-cta-arrow"></i>
                         </a>
                     </div>
                 </div>
@@ -273,29 +262,6 @@
                             </div>
                         </div>
                         <div class="education-level-badge">UNIV</div>
-                    </div>
-                </div>
-
-                <!-- Education Timeline -->
-                <div class="education-timeline animate-on-scroll">
-                    <div class="timeline-line"></div>
-                    <div class="timeline-points">
-                        <div class="timeline-point" data-year="2011">
-                            <div class="point-marker"></div>
-                            <div class="point-label">Mulai SD</div>
-                        </div>
-                        <div class="timeline-point" data-year="2017">
-                            <div class="point-marker"></div>
-                            <div class="point-label">Masuk SMP</div>
-                        </div>
-                        <div class="timeline-point" data-year="2020">
-                            <div class="point-marker"></div>
-                            <div class="point-label">Masuk SMA</div>
-                        </div>
-                        <div class="timeline-point" data-year="2024">
-                            <div class="point-marker"></div>
-                            <div class="point-label">Kuliah</div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -632,32 +598,23 @@
 
         // Start typing animation after page load
         window.addEventListener('load', () => {
-            setTimeout(typeText, 1000);
+            if (typingText) {
+                setTimeout(typeText, 1000);
+            }
         });
 
         // Theme toggle functionality
         const themeToggle = document.getElementById('themeToggle');
-        const mobileThemeToggle = document.getElementById('mobileThemeToggle');
         const body = document.body;
-        const themeIcon = document.querySelector('.theme-toggle-icon');
-        const mobileThemeIcon = document.querySelector('.theme-icon');
-        const mobileThemeText = document.querySelector('.theme-text');
 
         // Check for saved theme preference or default to dark mode
         const currentTheme = localStorage.getItem('theme') || 'dark';
         body.setAttribute('data-theme', currentTheme);
         updateThemeIcon(currentTheme);
 
-        // Desktop theme toggle
+        // Theme toggle
         if (themeToggle) {
             themeToggle.addEventListener('click', () => {
-                toggleTheme();
-            });
-        }
-
-        // Mobile theme toggle
-        if (mobileThemeToggle) {
-            mobileThemeToggle.addEventListener('click', () => {
                 toggleTheme();
             });
         }
@@ -674,67 +631,34 @@
         function updateThemeIcon(theme) {
             const isDark = theme === 'dark';
             const icon = isDark ? '☀️' : '🌙';
-            const text = isDark ? 'Light Mode' : 'Dark Mode';
             
+            const themeIcon = document.querySelector('.theme-toggle-icon');
             if (themeIcon) themeIcon.textContent = icon;
-            if (mobileThemeIcon) mobileThemeIcon.textContent = icon;
-            if (mobileThemeText) mobileThemeText.textContent = text;
         }
 
         // Mobile menu toggle
         const mobileMenu = document.getElementById('mobileMenu');
         const navMenu = document.querySelector('.nav-menu');
 
-        mobileMenu.addEventListener('click', () => {
-            mobileMenu.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                navMenu.classList.remove('active');
+        if (mobileMenu && navMenu) {
+            mobileMenu.addEventListener('click', () => {
+                mobileMenu.classList.toggle('active');
+                navMenu.classList.toggle('active');
             });
-        });
-
-        // Scroll Rocket Launch Effect
-        function launchScrollRocket(buttonElement) {
-            // Prevent multiple clicks during animation
-            if (buttonElement.classList.contains('scroll-launching')) {
-                return;
-            }
-            
-            // Add launching class and remove visible
-            buttonElement.classList.add('scroll-launching');
-            buttonElement.classList.remove('visible');
-            
-            // Scroll to top smoothly
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-            
-            // Add screen shake effect
-            document.body.style.animation = 'screen-shake 0.3s ease-in-out';
-            
-            // Reset after animation completes
-            setTimeout(() => {
-                buttonElement.classList.remove('scroll-launching');
-                document.body.style.animation = '';
-            }, 1500);
         }
 
-        // Scroll to Top Button (update existing functionality)
-        const scrollToTopBtn = document.getElementById('scrollToTop');
+        // Close mobile menu when clicking on a link
+        const navLinks = document.querySelectorAll('.nav-link');
+        if (navLinks.length > 0 && mobileMenu && navMenu) {
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.remove('active');
+                    navMenu.classList.remove('active');
+                });
+            });
+        }
 
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                scrollToTopBtn.classList.add('visible');
-            } else {
-                scrollToTopBtn.classList.remove('visible');
-            }
-        });
+
 
         // Active navigation link highlighting
         window.addEventListener('scroll', () => {
