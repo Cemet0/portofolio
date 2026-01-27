@@ -5,8 +5,8 @@
   --text-secondary: #6a6a6a;
   --accent-color: #5a5a5a;
   --accent-secondary: #7a7a7a;
-  --glass-bg: rgba(255, 255, 255, 0.1);
-  --glass-border: rgba(255, 255, 255, 0.2);
+  --glass-bg: rgba(255, 255, 255, 0.8);
+  --glass-border: rgba(0, 0, 0, 0.1);
   --transition: all 0.3s ease;
 }
 
@@ -568,6 +568,7 @@ body {
     flex-shrink: 0;
     font-size: 1.1rem;
     order: 1; /* First - left */
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   }
   
   .nav-brand {
@@ -579,6 +580,7 @@ body {
     padding: 0.8rem 2rem;
     text-align: center;
     order: 2; /* Second - center */
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   }
   
   .nav-brand h2 {
@@ -601,6 +603,7 @@ body {
     justify-content: center;
     flex-shrink: 0;
     order: 3; /* Third - right */
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   }
   
   .nav-toggle:hover {
@@ -650,6 +653,7 @@ body {
     list-style: none;
     margin: 0;
     gap: 0.5rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   }
   
   .nav-menu.active {
