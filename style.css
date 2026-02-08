@@ -737,6 +737,7 @@ body {
   padding: 2rem 1rem;
   text-align: center;
   border-top: 1px solid var(--glass-border);
+  margin-top: 4rem;
 }
 
 .footer p {
