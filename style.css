@@ -491,8 +491,6 @@ body {
 .coffee-code {
   padding: 4rem 1rem;
 }
-
-/* Animations */
 .animate-on-scroll {
   opacity: 0;
   transform: translateY(30px);
@@ -779,54 +777,6 @@ body {
 }
 
 
-/* Fun Stats Grid */
-.fun-stats-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2rem;
-  max-width: 1000px;
-  margin: 0 auto 4rem;
-}
-
-.fun-stat-card {
-  background: var(--glass-bg);
-  backdrop-filter: blur(20px);
-  border: 1px solid var(--glass-border);
-  border-radius: 20px;
-  padding: 2rem;
-  text-align: center;
-  transition: var(--transition);
-}
-
-.fun-stat-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-}
-
-.fun-stat-emoji {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-}
-
-.fun-stat-number {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  margin-bottom: 0.5rem;
-}
-
-.fun-stat-label {
-  color: var(--text-primary);
-  font-weight: 600;
-  font-size: 1.1rem;
-  margin-bottom: 0.5rem;
-}
-
-.fun-stat-desc {
-  color: var(--text-secondary);
-  font-size: 0.9rem;
-}
-
 /* Social Connect */
 .social-connect-wrapper {
   max-width: 1000px;
@@ -945,11 +895,6 @@ body {
 
 /* Mobile Responsive Updates */
 @media (max-width: 768px) {
-  .fun-stats-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-  }
-  
   .social-connect-grid {
     grid-template-columns: 1fr;
   }
@@ -1127,12 +1072,7 @@ body {
     font-size: 1rem;
   }
   
-  .fun-stats-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .stat-card,
-  .fun-stat-card {
+  .stat-card {
     padding: 1.5rem;
   }
   
