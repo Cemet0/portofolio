@@ -61,11 +61,6 @@
     <meta name="theme-color" content="#ffffff">
 </head>
 <body>
-    <!-- Loading Screen -->
-    <div class="loading-screen" id="loadingScreen">
-        <div class="loader"></div>
-    </div>
-
 
     <header class="header">
         <div class="container">
@@ -114,7 +109,7 @@
                 <div class="hero-content">
                     <div class="hero-avatar animate-on-scroll">
                         <div class="avatar-placeholder floating">
-                            <img src="assets/images/profile.gif" alt="Profile" class="profile-image">
+                            <img src="assets/images/potoProfil.png" alt="Profile" class="profile-image">
                         </div>
                     </div>
                     <div class="hero-text animate-on-scroll">
@@ -706,16 +701,7 @@
 
         // Form will be handled by Formspree directly (no JavaScript needed)
 
-        // Loading Screen
-        window.addEventListener('load', () => {
-            const loadingScreen = document.getElementById('loadingScreen');
-            setTimeout(() => {
-                loadingScreen.classList.add('fade-out');
-                setTimeout(() => {
-                    loadingScreen.style.display = 'none';
-                }, 500);
-            }, 1000);
-        });
+
 
         // Simplified Skill Badge Click Effects
         document.querySelectorAll('.skill-badge').forEach(badge => {

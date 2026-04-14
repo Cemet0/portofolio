@@ -1,23 +1,31 @@
 /* CSS Custom Properties */
 :root {
-  --bg-primary: #ffffff;
-  --text-primary: #2a2a2a;
-  --text-secondary: #6a6a6a;
-  --accent-color: #5a5a5a;
-  --accent-secondary: #7a7a7a;
-  --glass-bg: rgba(255, 255, 255, 0.8);
-  --glass-border: rgba(0, 0, 0, 0.1);
+  --bg-primary: #f0f2f8;
+  --bg-secondary: #e8ebf5;
+  --text-primary: #0f0f1a;
+  --text-secondary: #4a4a6a;
+  --accent-color: #2563eb;
+  --accent-secondary: #7c3aed;
+  --accent-yellow: #f59e0b;
+  --glass-bg: rgba(255, 255, 255, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.8);
+  --glass-shadow: 0 8px 32px rgba(37, 99, 235, 0.1);
+  --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
   --transition: all 0.3s ease;
 }
 
 [data-theme="dark"] {
-  --bg-primary: #1a1a1a;
+  --bg-primary: #0a0a1a;
+  --bg-secondary: #111128;
   --text-primary: #ffffff;
-  --text-secondary: #e5e5e5;
-  --accent-color: #e5e5e5;
-  --accent-secondary: #c0c0c0;
-  --glass-bg: rgba(0, 0, 0, 0.2);
+  --text-secondary: #a0a0c0;
+  --accent-color: #3b82f6;
+  --accent-secondary: #8b5cf6;
+  --glass-bg: rgba(255, 255, 255, 0.05);
   --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 8px 32px rgba(59, 130, 246, 0.15);
 }
 
 /* Reset */
@@ -40,6 +48,34 @@ body {
   padding-top: 85px;
 }
 
+/* Dot pattern background */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-image: radial-gradient(circle, rgba(37, 99, 235, 0.08) 1px, transparent 1px);
+  background-size: 30px 30px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Gradient blobs */
+body::after {
+  content: '';
+  position: fixed;
+  top: -200px; right: -200px;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(124, 58, 237, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+main, header, footer {
+  position: relative;
+  z-index: 1;
+}
+
 /* Container */
 .container {
   max-width: 1000px;
@@ -51,9 +87,14 @@ body {
 .section-title {
   color: var(--text-primary);
   text-align: center;
-  font-size: clamp(1.5rem, 4vw, 2rem);
-  font-weight: 600;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
   margin-bottom: 3rem;
+  letter-spacing: -0.02em;
+}
+
+.section-title span {
+  color: var(--accent-color);
 }
 
 /* Navbar */
@@ -115,7 +156,8 @@ body {
 
 .nav-link:hover,
 .nav-link.active {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(37, 99, 235, 0.1);
+  color: var(--accent-color);
 }
 
 .theme-toggle {
@@ -148,6 +190,17 @@ body {
   align-items: center;
   justify-content: center;
   padding: 4rem 1rem;
+  position: relative;
+}
+
+/* Extra blob for hero */
+.hero::before {
+  content: '';
+  position: absolute;
+  bottom: -100px; left: -100px;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.1) 0%, transparent 70%);
+  pointer-events: none;
 }
 
 .hero-content {
@@ -167,8 +220,8 @@ body {
   height: 280px;
   border-radius: 50%;
   overflow: hidden;
-  border: 4px solid var(--glass-border);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  border: 3px solid var(--glass-border);
+  box-shadow: 0 20px 60px rgba(37, 99, 235, 0.2), 0 0 0 8px rgba(37, 99, 235, 0.05);
 }
 
 .profile-image {
@@ -182,11 +235,12 @@ body {
 }
 
 .hero-title {
-  font-size: clamp(3rem, 6vw, 4.5rem);
-  font-weight: 700;
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-weight: 900;
   margin-bottom: 1rem;
   color: var(--text-primary);
-  line-height: 1.1;
+  line-height: 1;
+  letter-spacing: -0.03em;
 }
 
 .hero-subtitle {
@@ -199,20 +253,20 @@ body {
 .typing-text {
   font-size: 1.5rem;
   color: var(--accent-color);
-  font-weight: 600;
+  font-weight: 700;
   min-width: 250px;
 }
 
 .typing-cursor {
   font-size: 1.5rem;
   color: var(--accent-color);
-  font-weight: 600;
+  font-weight: 700;
   margin-left: 0.25rem;
   animation: blink 1s infinite;
 }
 
 .hero-description {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: var(--text-secondary);
   line-height: 1.7;
   margin-bottom: 2.5rem;
@@ -222,24 +276,21 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
-  background: var(--glass-bg);
-  backdrop-filter: blur(20px);
-  border: 1px solid var(--glass-border);
-  color: var(--text-primary);
+  background: var(--accent-color);
+  color: white;
   padding: 1rem 2rem;
   border-radius: 50px;
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 1rem;
   transition: all 0.3s ease;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
 }
 
 .hero-cta:hover {
   transform: translateY(-3px);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-  background: var(--accent-color);
-  color: white;
+  box-shadow: 0 15px 35px rgba(37, 99, 235, 0.5);
+  background: var(--accent-secondary);
 }
 
 /* About Section */
@@ -249,18 +300,20 @@ body {
 
 .about-text {
   background: var(--glass-bg);
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(30px);
   border: 1px solid var(--glass-border);
-  border-radius: 20px;
-  padding: 2rem;
+  border-radius: 24px;
+  padding: 2.5rem;
   max-width: 800px;
   margin: 0 auto;
+  box-shadow: var(--glass-shadow);
 }
 
 .about-text p {
   color: var(--text-secondary);
   line-height: 1.7;
   margin-bottom: 1rem;
+  font-size: 1.05rem;
 }
 
 /* Stats Section */
@@ -278,17 +331,30 @@ body {
 
 .stat-card {
   background: var(--glass-bg);
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(30px);
   border: 1px solid var(--glass-border);
-  border-radius: 20px;
+  border-radius: 24px;
   padding: 2rem;
   text-align: center;
   transition: var(--transition);
+  box-shadow: var(--glass-shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: radial-gradient(circle at center, rgba(37, 99, 235, 0.05) 0%, transparent 60%);
+  pointer-events: none;
 }
 
 .stat-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(37, 99, 235, 0.2);
+  border-color: rgba(37, 99, 235, 0.3);
 }
 
 .stat-icon {
@@ -298,15 +364,17 @@ body {
 }
 
 .stat-number {
-  font-size: 2.5rem;
-  font-weight: 700;
+  font-size: 3rem;
+  font-weight: 900;
   color: var(--text-primary);
   margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
 }
 
 .stat-label {
   color: var(--text-secondary);
-  font-weight: 500;
+  font-weight: 600;
+  font-size: 0.9rem;
 }
 
 /* Education Section */
@@ -324,16 +392,29 @@ body {
 
 .education-card {
   background: var(--glass-bg);
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(30px);
   border: 1px solid var(--glass-border);
-  border-radius: 20px;
+  border-radius: 24px;
   padding: 2rem;
   transition: var(--transition);
+  box-shadow: var(--glass-shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+.education-card::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 100px; height: 100px;
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.08) 0%, transparent 70%);
+  pointer-events: none;
 }
 
 .education-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(37, 99, 235, 0.15);
+  border-color: rgba(37, 99, 235, 0.3);
 }
 
 .education-icon {
@@ -381,17 +462,18 @@ body {
 
 .project-card {
   background: var(--glass-bg);
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(30px);
   border: 1px solid var(--glass-border);
-  border-radius: 20px;
+  border-radius: 24px;
   overflow: hidden;
   transition: var(--transition);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--glass-shadow);
 }
 
 .project-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 25px 50px rgba(37, 99, 235, 0.2);
+  border-color: rgba(37, 99, 235, 0.3);
 }
 
 .project-image {
@@ -436,13 +518,13 @@ body {
 }
 
 .tech-tag {
-  background: rgba(255, 255, 255, 0.2);
-  color: var(--text-primary);
+  background: rgba(37, 99, 235, 0.1);
+  color: var(--accent-color);
   padding: 0.25rem 0.75rem;
   border-radius: 15px;
   font-size: 0.8rem;
-  font-weight: 500;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  font-weight: 600;
+  border: 1px solid rgba(37, 99, 235, 0.2);
 }
 
 /* Skills Section */
@@ -461,7 +543,7 @@ body {
 
 .skill-badge {
   background: var(--glass-bg);
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(30px);
   border: 1px solid var(--glass-border);
   border-radius: 20px;
   padding: 1rem 1.5rem;
@@ -470,21 +552,24 @@ body {
   gap: 0.75rem;
   transition: var(--transition);
   cursor: pointer;
+  box-shadow: var(--glass-shadow);
 }
 
 .skill-badge:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(37, 99, 235, 0.2);
+  border-color: rgba(37, 99, 235, 0.4);
 }
 
 .skill-badge-icon {
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
 }
 
 .skill-badge-text {
   color: var(--text-primary);
-  font-weight: 600;
+  font-weight: 700;
+  font-size: 0.95rem;
 }
 
 /* Coffee & Code Section */
@@ -743,38 +828,7 @@ body {
   margin: 0;
 }
 
-/* Loading Screen */
-.loading-screen {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: var(--bg-primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  transition: opacity 0.5s ease;
-}
 
-.loading-screen.fade-out {
-  opacity: 0;
-}
-
-.loader {
-  width: 50px;
-  height: 50px;
-  border: 4px solid rgba(255, 255, 255, 0.3);
-  border-top: 4px solid var(--accent-color);
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
 
 
 /* Social Connect */
@@ -786,9 +840,10 @@ body {
 .social-connect-title {
   color: var(--text-primary);
   text-align: center;
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-size: 1.8rem;
+  font-weight: 800;
   margin-bottom: 2rem;
+  letter-spacing: -0.02em;
 }
 
 .social-connect-grid {
@@ -799,7 +854,7 @@ body {
 
 .social-connect-card {
   background: var(--glass-bg);
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(30px);
   border: 1px solid var(--glass-border);
   border-radius: 20px;
   padding: 1.5rem;
@@ -808,11 +863,13 @@ body {
   gap: 1rem;
   text-decoration: none;
   transition: var(--transition);
+  box-shadow: var(--glass-shadow);
 }
 
 .social-connect-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(37, 99, 235, 0.2);
+  border-color: rgba(37, 99, 235, 0.3);
 }
 
 .social-connect-icon {
@@ -876,21 +933,18 @@ body {
   position: absolute;
   top: 1rem;
   right: 1rem;
-  background: rgba(255, 255, 255, 0.9);
-  color: #2a2a2a;
+  background: var(--accent-color);
+  color: white;
   padding: 0.4rem 0.8rem;
   border-radius: 20px;
   font-size: 0.85rem;
   font-weight: 700;
-  border: 2px solid rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
 }
 
 [data-theme="dark"] .education-level-badge {
-  background: rgba(0, 0, 0, 0.8);
+  background: var(--accent-color);
   color: white;
-  border: 2px solid rgba(255, 255, 255, 0.2);
 }
 
 /* Mobile Responsive Updates */
@@ -903,7 +957,7 @@ body {
 
 /* Gradient Text */
 .gradient-text {
-  background: linear-gradient(45deg, var(--accent-color), var(--accent-secondary));
+  background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-color) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -1036,19 +1090,19 @@ body {
 
 /* Education Card Data Attributes */
 .education-card[data-level="sd"] {
-  border-left: 4px solid #4CAF50;
+  border-left: 4px solid #10b981;
 }
 
 .education-card[data-level="smp"] {
-  border-left: 4px solid #2196F3;
+  border-left: 4px solid #3b82f6;
 }
 
 .education-card[data-level="sma"] {
-  border-left: 4px solid #FF9800;
+  border-left: 4px solid #f59e0b;
 }
 
 .education-card[data-level="universitas"] {
-  border-left: 4px solid #9C27B0;
+  border-left: 4px solid #8b5cf6;
 }
 
 
@@ -1089,7 +1143,6 @@ body {
 /* Print Styles */
 @media print {
   .header,
-  .loading-screen,
   .nav-toggle {
     display: none !important;
   }
