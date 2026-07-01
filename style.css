@@ -1,31 +1,31 @@
 /* CSS Custom Properties */
 :root {
-  --bg-primary: #f0f2f8;
-  --bg-secondary: #e8ebf5;
-  --text-primary: #0f0f1a;
-  --text-secondary: #4a4a6a;
-  --accent-color: #2563eb;
-  --accent-secondary: #7c3aed;
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --text-primary: #121212;
+  --text-secondary: #555555;
+  --accent-color: #4f46e5;
+  --accent-secondary: #3730a3;
   --accent-yellow: #f59e0b;
-  --glass-bg: rgba(255, 255, 255, 0.6);
-  --glass-border: rgba(255, 255, 255, 0.8);
-  --glass-shadow: 0 8px 32px rgba(37, 99, 235, 0.1);
-  --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-  --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  --glass-bg: rgba(255, 255, 255, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.4);
+  --glass-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+  --gradient-1: none;
+  --gradient-2: none;
+  --gradient-3: none;
   --transition: all 0.3s ease;
 }
 
 [data-theme="dark"] {
-  --bg-primary: #0a0a1a;
-  --bg-secondary: #111128;
-  --text-primary: #ffffff;
-  --text-secondary: #a0a0c0;
-  --accent-color: #3b82f6;
-  --accent-secondary: #8b5cf6;
-  --glass-bg: rgba(255, 255, 255, 0.05);
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --glass-shadow: 0 8px 32px rgba(59, 130, 246, 0.15);
+  --bg-primary: #121212;
+  --bg-secondary: #1e1e1e;
+  --text-primary: #f5f5f5;
+  --text-secondary: #a3a3a3;
+  --accent-color: #818cf8;
+  --accent-secondary: #6366f1;
+  --glass-bg: rgba(18, 18, 18, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 /* Reset */
@@ -50,25 +50,12 @@ body {
 
 /* Dot pattern background */
 body::before {
-  content: '';
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background-image: radial-gradient(circle, rgba(37, 99, 235, 0.08) 1px, transparent 1px);
-  background-size: 30px 30px;
-  pointer-events: none;
-  z-index: 0;
+  display: none;
 }
 
 /* Gradient blobs */
 body::after {
-  content: '';
-  position: fixed;
-  top: -200px; right: -200px;
-  width: 600px; height: 600px;
-  background: radial-gradient(circle, rgba(124, 58, 237, 0.12) 0%, transparent 70%);
-  pointer-events: none;
-  z-index: 0;
+  display: none;
 }
 
 main, header, footer {
@@ -100,22 +87,31 @@ main, header, footer {
 /* Navbar */
 .header {
   position: fixed;
-  top: 0.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--glass-bg);
-  backdrop-filter: blur(20px);
-  border: 1px solid var(--glass-border);
-  border-radius: 50px;
+  top: 0;
+  left: 0;
+  width: 100%;
   z-index: 1000;
-  padding: 0.75rem 2rem;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  padding: 0.8rem 2rem;
+  
+  /* iOS Liquid Glass Effect */
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+}
+
+[data-theme="dark"] .header {
+  background: rgba(18, 18, 18, 0.65);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
 }
 
 .nav {
   display: flex;
   align-items: center;
-  gap: 3rem;
+  justify-content: space-between;
+  gap: 2rem;
 }
 
 .nav-brand h2 {
@@ -195,12 +191,7 @@ main, header, footer {
 
 /* Extra blob for hero */
 .hero::before {
-  content: '';
-  position: absolute;
-  bottom: -100px; left: -100px;
-  width: 500px; height: 500px;
-  background: radial-gradient(circle, rgba(37, 99, 235, 0.1) 0%, transparent 70%);
-  pointer-events: none;
+  display: none;
 }
 
 .hero-content {
@@ -300,7 +291,8 @@ main, header, footer {
 
 .about-text {
   background: var(--glass-bg);
-  backdrop-filter: blur(30px);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
   border: 1px solid var(--glass-border);
   border-radius: 24px;
   padding: 2.5rem;
@@ -331,7 +323,8 @@ main, header, footer {
 
 .stat-card {
   background: var(--glass-bg);
-  backdrop-filter: blur(30px);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
   border: 1px solid var(--glass-border);
   border-radius: 24px;
   padding: 2rem;
@@ -343,12 +336,7 @@ main, header, footer {
 }
 
 .stat-card::before {
-  content: '';
-  position: absolute;
-  top: -50%; left: -50%;
-  width: 200%; height: 200%;
-  background: radial-gradient(circle at center, rgba(37, 99, 235, 0.05) 0%, transparent 60%);
-  pointer-events: none;
+  display: none;
 }
 
 .stat-card:hover {
@@ -392,7 +380,8 @@ main, header, footer {
 
 .education-card {
   background: var(--glass-bg);
-  backdrop-filter: blur(30px);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
   border: 1px solid var(--glass-border);
   border-radius: 24px;
   padding: 2rem;
@@ -403,12 +392,7 @@ main, header, footer {
 }
 
 .education-card::after {
-  content: '';
-  position: absolute;
-  top: 0; right: 0;
-  width: 100px; height: 100px;
-  background: radial-gradient(circle, rgba(37, 99, 235, 0.08) 0%, transparent 70%);
-  pointer-events: none;
+  display: none;
 }
 
 .education-card:hover {
@@ -462,7 +446,8 @@ main, header, footer {
 
 .project-card {
   background: var(--glass-bg);
-  backdrop-filter: blur(30px);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
   border: 1px solid var(--glass-border);
   border-radius: 24px;
   overflow: hidden;
@@ -543,7 +528,8 @@ main, header, footer {
 
 .skill-badge {
   background: var(--glass-bg);
-  backdrop-filter: blur(30px);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
   border: 1px solid var(--glass-border);
   border-radius: 20px;
   padding: 1rem 1.5rem;
@@ -643,7 +629,8 @@ main, header, footer {
   /* Mobile Safari containers - reorder with flexbox order */
   .theme-toggle {
     background: var(--glass-bg);
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
     border: 1px solid var(--glass-border);
     border-radius: 50%;
     width: 50px;
@@ -656,7 +643,8 @@ main, header, footer {
   
   .nav-brand {
     background: var(--glass-bg);
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
     border: 1px solid var(--glass-border);
     border-radius: 30px;
     flex: 1;
@@ -675,7 +663,8 @@ main, header, footer {
     display: flex;
     flex-direction: column;
     background: var(--glass-bg);
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
     border: 1px solid var(--glass-border);
     border-radius: 50%;
     cursor: pointer;
@@ -724,7 +713,8 @@ main, header, footer {
     left: 1rem;
     right: 1rem;
     background: var(--glass-bg);
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
     border: 1px solid var(--glass-border);
     border-radius: 20px;
     flex-direction: column;
@@ -854,7 +844,8 @@ main, header, footer {
 
 .social-connect-card {
   background: var(--glass-bg);
-  backdrop-filter: blur(30px);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
   border: 1px solid var(--glass-border);
   border-radius: 20px;
   padding: 1.5rem;
@@ -955,35 +946,26 @@ main, header, footer {
 }
 /* Missing Styles - Cleanup */
 
-/* Gradient Text */
+/* Elegant Gradient Text */
 .gradient-text {
-  background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-color) 100%);
+  background: linear-gradient(135deg, var(--accent-color) 0%, #0ea5e9 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* Glass Effect Utility Classes */
-.glass-card {
+/* Flat Utility Classes */
+.glass-card, .glass-card-rounded, .glass-intense {
   background: var(--glass-bg);
-  backdrop-filter: blur(20px);
   border: 1px solid var(--glass-border);
-  border-radius: 20px;
+}
+
+.glass-card, .glass-intense {
+  border-radius: 12px;
 }
 
 .glass-card-rounded {
-  background: var(--glass-bg);
-  backdrop-filter: blur(20px);
-  border: 1px solid var(--glass-border);
   border-radius: 50px;
-}
-
-/* Glass Intense Effect */
-.glass-intense {
-  background: var(--glass-bg);
-  backdrop-filter: blur(20px);
-  border: 1px solid var(--glass-border);
-  border-radius: 20px;
 }
 
 /* About Content */
