@@ -1,408 +1,97 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nabil Ananda Putra | Developer Portfolio</title>
-    
-    <!-- Meta tags from original -->
-    <meta name="description" content="Mahasiswa Teknik Informatika Universitas Dian Nuswantoro yang sedang belajar web development. Portfolio berisi project HTML, CSS, JavaScript, PHP, Python, dan MySQL.">
-    <meta name="theme-color" content="#050505">
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
-    
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css">
-    
-    <!-- GSAP & Lenis for Smooth Scrolling & Premium Animations -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.27/bundled/lenis.min.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nabil Ananda Putra | Portofolio Web Developer</title>
+<meta name="description" content="Mahasiswa Teknik Informatika Universitas Dian Nuswantoro yang sedang belajar web development. Portofolio berisi proyek HTML, CSS, JavaScript, PHP, Python, dan MySQL.">
+<meta name="theme-color" content="#E7EEF0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Instrument+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
 </head>
 <body>
 
+<main>
+<section id="beranda" class="hero">
+  <div class="wrap">
+    <div>
+      <h1>Nabil Ananda Putra</h1>
+      <p>Jika Hujan Bisa Turun Tanpa Diminta, Maka Aku bisa Menahan Kecewa Sambil Tertawa</p>
+      <a class="solid" href="#karya">Lihat karya saya</a>
+    </div>
+    <div class="drop"><img src="assets/images/potoProfil.png" alt="Foto Nabil Ananda Putra"></div>
+  </div>
+</section>
 
-    <header class="header">
-        <nav class="nav">
-            <div class="nav-brand">
-                <a href="#hero" style="text-decoration: none; color: inherit;">
-                    <h2>Micellar.</h2>
-                </a>
-            </div>
-            <ul class="nav-menu" style="position: relative;">
-                <li class="nav-indicator"></li>
-                <li><a href="#hero" class="nav-link">Home</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#projects" class="nav-link">Work</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+<section id="tentang">
+  <div class="wrap">
+    <h2>Tentang saya</h2>
+    <div class="about">
+      <p class="lead">Saya mahasiswa Teknik Informatika dengan minat besar pada web development. Masih belajar, dan terus berlatih supaya bisa membuat solusi digital yang bermanfaat.</p>
+      <div>
+        <h3>Skill</h3>
+        <ul class="tags big"><li>HTML5</li><li>CSS3</li><li>JavaScript</li><li>PHP</li><li>Python</li><li>MySQL</li><li>Java</li></ul>
+        <h3>Pendidikan</h3>
+        <dl class="edu">
+          <dt>2024 – sekarang</dt><dd><b>Universitas Dian Nuswantoro</b>Teknik Informatika, semester 5</dd>
+          <dt>2021 – 2024</dt><dd><b>SMA Kesatrian 1 Semarang</b>Jurusan IPA, mulai tertarik pada teknologi</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <main>
-        <!-- Hero Section -->
-        <section id="hero" class="hero">
-            <div class="container">
-                <div class="hero-content gs-reveal">
-                    <div class="hero-avatar">
-                        <div class="hero-glow"></div>
-                        <div class="avatar-placeholder">
-                            <img src="assets/images/potoProfil.png" alt="Profile Nabil">
-                        </div>
-                    </div>
-                    <div class="hero-text-content">
-                        <h1 class="hero-title">
-                            Nabil Ananda <br>
-                            <span class="gradient-text">Putra.</span>
-                        </h1>
-                        <p class="hero-subtitle">Interactive Web Developer & Student</p>
-                        <p class="hero-description">
-                            Mahasiswa Teknik Informatika yang sedang belajar dan mengembangkan kemampuan dalam web development. Antusias untuk terus belajar teknologi baru dan menciptakan project yang bermanfaat.
-                        </p>
-                        <a href="#projects" class="hero-cta" id="cta-btn">
-                            <span>Explore My Work</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
+<section id="karya">
+  <div class="wrap">
+    <h2>Karya</h2>
+    <div class="work">
+      <article class="pj" style="--c:#CFE0F5">
+        <div class="shot"><img src="assets/images/website_projek.png" alt="Tampilan website PHP dan Bootstrap" loading="lazy"></div>
+        <div><h3>Website PHP &amp; Bootstrap</h3><p>Website dinamis yang responsif, dibangun dengan PHP dan Bootstrap.</p><ul class="tags"><li>PHP</li><li>Bootstrap</li><li>MySQL</li></ul></div>
+      </article>
+      <article class="pj" style="--c:#E2DDF6">
+        <div class="shot"><img src="assets/images/figma_projek.png" alt="Desain UI/UX di Figma" loading="lazy"></div>
+        <div><h3>Desain UI/UX Figma</h3><p>Rancangan antarmuka modern yang mengutamakan pengalaman pengguna.</p><ul class="tags"><li>Figma</li><li>UI/UX</li><li>Prototyping</li></ul></div>
+      </article>
+      <article class="pj" style="--c:#C7E8D5">
+        <div class="shot"><img src="assets/images/projekMictify.png" alt="Aplikasi streaming musik Mictify" loading="lazy"></div>
+        <div><h3>Mictify, streaming musik</h3><p>Aplikasi pemutar musik ala Spotify dengan playlist dan tampilan modern.</p><ul class="tags"><li>JavaScript</li><li>HTML/CSS</li><li>Audio API</li></ul></div>
+      </article>
+      <article class="pj" style="--c:#F6E3C8">
+        <div class="shot"><img src="assets/images/arduino_projek.png" alt="Proyek Arduino di Tinkercad" loading="lazy"></div>
+        <div><h3>Arduino Tinkercad</h3><p>Simulasi dan pengembangan proyek Arduino untuk aplikasi IoT.</p><ul class="tags"><li>Arduino</li><li>C++</li><li>IoT</li></ul></div>
+      </article>
+    </div>
+  </div>
+</section>
 
-        <!-- Bento Box Section (About, Stats, Skills, Education) -->
-        <section id="about" class="bento-section">
-            <div class="container">
-                <h2 class="section-title gs-reveal">Who I Am</h2>
-                
-                <div class="bento-grid">
-                    <!-- About Card -->
-                    <div class="bento-card bento-about gs-reveal">
-                        <h3 class="bento-title">About Me</h3>
-                        <p>
-                            Saya adalah mahasiswa Teknik Informatika di Universitas Dian Nuswantoro yang memiliki minat besar terhadap dunia web development. 
-                        </p>
-                        <p>
-                            Meskipun masih dalam tahap pembelajaran, saya selalu berusaha untuk mengasah kemampuan programming dan mengikuti perkembangan teknologi terbaru. Saya percaya bahwa dengan terus belajar dan berlatih, saya dapat berkontribusi dalam menciptakan solusi digital yang bermanfaat.
-                        </p>
-                    </div>
+<section id="kontak" class="contact">
+  <div class="wrap">
+    <h2>Ayo ngobrol.</h2>
+    <p>Punya proyek atau sekadar ingin menyapa? Kirim pesan lewat salah satu kanal ini.</p>
+    <div class="links">
+      <a class="glass dk pill" href="mailto:cemetbigaill@gmail.com"><span>Email</span></a>
+      <a class="glass dk pill" href="https://github.com/Cemet0" target="_blank" rel="noopener noreferrer"><span>GitHub @Cemet0</span></a>
+      <a class="glass dk pill" href="https://www.instagram.com/itsmecemet/" target="_blank" rel="noopener noreferrer"><span>Instagram @itsmecemet</span></a>
+      <a class="glass dk pill" href="https://www.tiktok.com/@micellar969" target="_blank" rel="noopener noreferrer"><span>TikTok @micellar969</span></a>
+    </div>
+    <small>© 2026 Nabil Ananda Putra</small>
+  </div>
+</section>
+</main>
 
-                    <!-- Stats Cards -->
-                    <div class="bento-card bento-stat gs-reveal">
-                        <div class="stat-content">
-                            <div class="stat-number">6+</div>
-                            <div class="stat-label">Projects</div>
-                        </div>
-                    </div>
-                    
-                    <div class="bento-card bento-stat gs-reveal">
-                        <div class="stat-content">
-                            <div class="stat-number">4</div>
-                            <div class="stat-label">Semesters</div>
-                        </div>
-                    </div>
-
-                    <!-- Skills Card (Marquee) -->
-                    <div class="bento-card bento-skills gs-reveal">
-                        <h3 class="bento-title">Tech Stack</h3>
-                        <div class="skills-marquee">
-                            <div class="marquee-content">
-                                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML"> HTML5</div>
-                                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS"> CSS3</div>
-                                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JS"> JavaScript</div>
-                                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-plain.svg" alt="PHP"> PHP</div>
-                                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python"> Python</div>
-                                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL"> MySQL</div>
-                                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java"> Java</div>
-                                <!-- Duplicate for infinite scroll effect -->
-                                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML"> HTML5</div>
-                                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS"> CSS3</div>
-                                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JS"> JavaScript</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Education Timeline -->
-                    <div class="bento-card bento-education gs-reveal">
-                        <h3 class="bento-title">Education Journey</h3>
-                        <div class="education-timeline">
-                            <div class="timeline-item">
-                                <div class="timeline-year">2024 - Now</div>
-                                <div class="timeline-content">
-                                    <h3>Universitas Dian Nuswantoro</h3>
-                                    <p>Teknik Informatika - Mendalami web development dan software engineering.</p>
-                                </div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-year">2020 - 2023</div>
-                                <div class="timeline-content">
-                                    <h3>SMA Kesatrian 1 Semarang</h3>
-                                    <p>Fokus pada bidang IPA dan mulai tertarik dengan dunia teknologi.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Projects Section -->
-        <section id="projects" class="projects">
-            <div class="container">
-                <h2 class="section-title gs-reveal">Featured <span class="gradient-text">Work</span></h2>
-                
-                <div class="projects-grid">
-                    <div class="project-card gs-reveal">
-                        <div class="project-inner">
-                            <div class="project-image">
-                                <img src="assets/images/website_projek.png" alt="Website PHP & Bootstrap">
-                            </div>
-                            <div class="project-content">
-                                <h3 class="project-title">Website PHP & Bootstrap</h3>
-                                <p class="project-description">Website dinamis dengan fitur lengkap dan responsive design menggunakan PHP dan Bootstrap.</p>
-                                <div class="project-tech">
-                                    <span class="tech-tag">PHP</span>
-                                    <span class="tech-tag">Bootstrap</span>
-                                    <span class="tech-tag">MySQL</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="project-card gs-reveal">
-                        <div class="project-inner">
-                            <div class="project-image">
-                                <img src="assets/images/figma_projek.png" alt="UI/UX Design Figma">
-                            </div>
-                            <div class="project-content">
-                                <h3 class="project-title">UI/UX Design Figma</h3>
-                                <p class="project-description">Desain antarmuka pengguna modern dan intuitif dengan fokus pada user experience.</p>
-                                <div class="project-tech">
-                                    <span class="tech-tag">Figma</span>
-                                    <span class="tech-tag">UI/UX</span>
-                                    <span class="tech-tag">Prototyping</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="project-card gs-reveal">
-                        <div class="project-inner">
-                            <div class="project-image">
-                                <img src="assets/images/projekMictify.png" alt="Mictify Music Streaming">
-                            </div>
-                            <div class="project-content">
-                                <h3 class="project-title">Mictify - Music Streaming</h3>
-                                <p class="project-description">Aplikasi streaming musik ala Spotify dengan fitur playlist dan interface modern.</p>
-                                <div class="project-tech">
-                                    <span class="tech-tag">JavaScript</span>
-                                    <span class="tech-tag">HTML/CSS</span>
-                                    <span class="tech-tag">Audio API</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="project-card gs-reveal">
-                        <div class="project-inner">
-                            <div class="project-image">
-                                <img src="assets/images/arduino_projek.png" alt="Arduino Tinkercad">
-                            </div>
-                            <div class="project-content">
-                                <h3 class="project-title">Arduino Tinkercad</h3>
-                                <p class="project-description">Simulasi dan pengembangan project Arduino untuk berbagai aplikasi IoT.</p>
-                                <div class="project-tech">
-                                    <span class="tech-tag">Arduino</span>
-                                    <span class="tech-tag">C++</span>
-                                    <span class="tech-tag">IoT</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Social & Contact -->
-        <section id="contact" class="contact-bento">
-            <div class="container">
-                <h2 class="section-title gs-reveal">Let's <span class="gradient-accent">Connect</span></h2>
-                
-                <div class="social-grid">
-                    <a href="https://www.instagram.com/itsmecemet/" target="_blank" class="social-card gs-reveal">
-                        <i class="fab fa-instagram" style="color: #e1306c;"></i>
-                        <span>@itsmecemet</span>
-                    </a>
-                    
-                    <a href="https://github.com/Cemet0" target="_blank" class="social-card gs-reveal">
-                        <i class="fab fa-github" style="color: #ffffff;"></i>
-                        <span>@Cemet0</span>
-                    </a>
-                    
-                    <a href="https://www.tiktok.com/@micellar969" target="_blank" class="social-card gs-reveal">
-                        <i class="fab fa-tiktok" style="color: #00f2fe;"></i>
-                        <span>@micellar969</span>
-                    </a>
-                    
-                    <a href="mailto:cemetbigaill@gmail.com" class="social-card gs-reveal">
-                        <i class="fas fa-envelope" style="color: #fbbc05;"></i>
-                        <span>Email Me</span>
-                    </a>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="footer gs-reveal">
-        <div class="container">
-            <p>&copy; 2026 Nabil Ananda Putra. Crafted with passion.</p>
-        </div>
-    </footer>
-
-    <!-- Scripts for Premium Effects -->
-    <script>
-        // 1. Initialize Lenis for Smooth Scrolling
-        const lenis = new Lenis({
-            duration: 1.2,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), 
-            direction: 'vertical',
-            gestureDirection: 'vertical',
-            smooth: true,
-            mouseMultiplier: 1,
-            smoothTouch: false,
-            touchMultiplier: 2,
-            infinite: false,
-        });
-
-        function raf(time) {
-            lenis.raf(time);
-            requestAnimationFrame(raf);
-        }
-        requestAnimationFrame(raf);
-
-        // 2. Navbar Click Animation & Smooth Scroll
-        const navLinks = document.querySelectorAll('.nav-link');
-        navLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault(); 
-                
-                // Visual pop animation
-                gsap.to(link, {
-                    scale: 0.85,
-                    duration: 0.15,
-                    yoyo: true,
-                    repeat: 1,
-                    ease: "power2.inOut"
-                });
-
-                // Smooth scroll to target
-                const targetId = link.getAttribute('href');
-                lenis.scrollTo(targetId, {
-                    offset: -80, // Offset for the fixed header
-                    duration: 1.2
-                });
-            });
-        });
-
-        // 3. Navbar Hover Indicator (Persistent iOS Floating Pill)
-        const indicator = document.querySelector('.nav-indicator');
-        const navMenu = document.querySelector('.nav-menu');
-        
-        function moveIndicator(link) {
-            if (!link) return;
-            const rect = link.getBoundingClientRect();
-            const menuRect = navMenu.getBoundingClientRect();
-            
-            gsap.to(indicator, {
-                x: rect.left - menuRect.left,
-                y: rect.top - menuRect.top,
-                width: rect.width,
-                height: rect.height,
-                opacity: 1,
-                duration: 0.4,
-                ease: "power3.out"
-            });
-        }
-
-        // Init indicator on the first link
-        let activeLink = document.querySelector('.nav-link.active') || navLinks[0];
-        activeLink.classList.add('active');
-        
-        // Need to wait slightly for font/layout to render before grabbing rects
-        setTimeout(() => moveIndicator(activeLink), 100);
-
-        navLinks.forEach(link => {
-            link.addEventListener('mouseenter', () => {
-                moveIndicator(link);
-            });
-
-            link.addEventListener('click', () => {
-                activeLink.classList.remove('active');
-                link.classList.add('active');
-                activeLink = link;
-                moveIndicator(link);
-            });
-        });
-
-        navMenu.addEventListener('mouseleave', () => {
-            moveIndicator(activeLink);
-        });
-
-        // Update active link on scroll
-        const sections = document.querySelectorAll('section');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const id = entry.target.getAttribute('id');
-                    const link = document.querySelector(`.nav-link[href="#${id}"]`);
-                    if (link && link !== activeLink) {
-                        activeLink.classList.remove('active');
-                        link.classList.add('active');
-                        activeLink = link;
-                        moveIndicator(link);
-                    }
-                }
-            });
-        }, { threshold: 0.4 });
-
-        sections.forEach(section => observer.observe(section));
-
-
-
-
-
-        // 3. GSAP Scroll Animations
-        gsap.registerPlugin(ScrollTrigger);
-
-        const revealElements = document.querySelectorAll('.gs-reveal');
-        
-        revealElements.forEach((el) => {
-            gsap.fromTo(el, 
-                { autoAlpha: 0, y: 50 },
-                {
-                    duration: 1,
-                    autoAlpha: 1,
-                    y: 0,
-                    ease: "power3.out",
-                    scrollTrigger: {
-                        trigger: el,
-                        start: "top 85%", 
-                        toggleActions: "play none none reverse"
-                    }
-                }
-            );
-        });
-
-        // Hero Parallax
-        gsap.to(".hero-avatar", {
-            y: 50,
-            ease: "none",
-            scrollTrigger: {
-                trigger: ".hero",
-                start: "top top",
-                end: "bottom top",
-                scrub: true
-            }
-        });
-    </script>
+<!-- Tab bar kapsul Liquid Glass, terinspirasi FabBar iOS 26 -->
+<div class="fab" role="navigation" aria-label="Navigasi utama">
+  <nav class="tabs glass" id="tabs">
+    <span class="ind" id="ind" aria-hidden="true"></span>
+    <a class="tab" href="#beranda" data-s="beranda"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg><span>Beranda</span></a>
+    <a class="tab" href="#tentang" data-s="tentang"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7z"/></svg><span>Tentang</span></a>
+    <a class="tab" href="#karya" data-s="karya"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="8" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/><rect x="13" y="13" width="8" height="8" rx="2"/></svg><span>Karya</span></a>
+    <a class="tab" href="#kontak" data-s="kontak"><svg viewBox="0 0 24 24"><path d="M4 4h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-7l-5 4v-4H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/></svg><span>Kontak</span></a>
+  </nav>
+</div>
 </body>
 </html>
