@@ -3,6 +3,7 @@
   const tabs = [...bar.querySelectorAll(':scope > .tab')];
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   let active = tabs[0], drag = false, pid = null, sx = 0, moved = false, lock = 0;
+  let cache = null, moveRaf = 0, lastClientX = 0;
 
   // Salinan tab berwarna aksen, dipotong oleh indikator kaca
   const row = document.createElement('div');
@@ -10,15 +11,17 @@
   tabs.forEach(t => { const c = t.cloneNode(true); c.removeAttribute('href'); row.append(c); });
   ind.append(row);
 
-  function put(tab, x, snap) {
-    if (x == null) x = tab.offsetLeft - 2;
+  function put(tab, x, snap, cached) {
+    const w = cached ? cached.w : tab.offsetWidth;
+    const tw = cached ? cached.tw : bar.clientWidth;
+    if (x == null) x = (cached ? cached.left : tab.offsetLeft) - 2;
     const on = bar.classList.contains('press');
     tabs.forEach(t => t.classList.toggle('under', on && t === tab));
     if (snap) ind.style.transition = row.style.transition = 'none';
     ind.style.setProperty('--x', x + 'px');
-    ind.style.setProperty('--w', tab.offsetWidth + 'px');
-    ind.style.setProperty('--tw', bar.clientWidth + 'px');
-    ind.style.setProperty('--cx', (x + 2 + tab.offsetWidth / 2) + 'px');
+    ind.style.setProperty('--w', w + 'px');
+    ind.style.setProperty('--tw', tw + 'px');
+    ind.style.setProperty('--cx', (x + 2 + w / 2) + 'px');
     if (snap) { void ind.offsetWidth; ind.style.transition = row.style.transition = ''; }
   }
   function set(t) {
@@ -32,10 +35,26 @@
     set(t);
     document.getElementById(t.dataset.s).scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
   }
+  function measure() {
+    const br = bar.getBoundingClientRect();
+    return {
+      barLeft: br.left,
+      tw: bar.clientWidth,
+      items: tabs.map(t => {
+        const r = t.getBoundingClientRect();
+        return { el: t, cx: r.left + r.width / 2, w: t.offsetWidth, left: t.offsetLeft };
+      })
+    };
+  }
   function near(cx) {
+    if (cache) {
+      let b = cache.items[0], d = 1e9;
+      for (const it of cache.items) { const k = Math.abs(cx - it.cx); if (k < d) { d = k; b = it; } }
+      return b;
+    }
     let b = tabs[0], d = 1e9;
     tabs.forEach(t => { const r = t.getBoundingClientRect(), k = Math.abs(cx - (r.left + r.width / 2)); if (k < d) { d = k; b = t; } });
-    return b;
+    return { el: b, w: b.offsetWidth, left: b.offsetLeft };
   }
 
   tabs.forEach(t => t.addEventListener('click', e => { e.preventDefault(); if (e.detail === 0) go(t); }));
@@ -45,22 +64,36 @@
   // Sentuh: gelembung kaca langsung pindah ke tab yang disentuh, pilihan dipastikan saat jari diangkat
   bar.addEventListener('pointerdown', e => {
     if (drag || (e.pointerType === 'mouse' && e.button)) return;
-    drag = true; pid = e.pointerId; sx = e.clientX; moved = false;
+    drag = true; pid = e.pointerId; sx = lastClientX = e.clientX; moved = false;
+    cache = measure();
     try { bar.setPointerCapture(pid); } catch (_) {}
     bar.classList.add('press');
-    put(near(e.clientX));
+    const hit = near(e.clientX);
+    put(hit.el, null, false, { w: hit.w, left: hit.left, tw: cache.tw });
   });
   bar.addEventListener('pointermove', e => {
     if (!drag || e.pointerId !== pid) return;
+    lastClientX = e.clientX;
     if (!moved && Math.abs(e.clientX - sx) < 4) return;
-    moved = true; bar.classList.add('drag');
-    const h = near(e.clientX), w = h.offsetWidth, l = bar.getBoundingClientRect().left;
-    put(h, Math.max(0, Math.min(bar.clientWidth - 4 - w, e.clientX - l - 2 - w / 2)));
+    moved = true;
+    if (!bar.classList.contains('drag')) bar.classList.add('drag');
+    if (moveRaf) return;
+    moveRaf = requestAnimationFrame(() => {
+      moveRaf = 0;
+      if (!drag || !cache) return;
+      const hit = near(lastClientX);
+      const x = Math.max(0, Math.min(cache.tw - 4 - hit.w, lastClientX - cache.barLeft - 2 - hit.w / 2));
+      put(hit.el, x, false, { w: hit.w, left: hit.left, tw: cache.tw });
+    });
   });
   function end(e) {
     if (!drag) return;
-    drag = false; bar.classList.remove('press', 'drag');
-    e ? go(near(e.clientX)) : set(active);
+    drag = false;
+    if (moveRaf) { cancelAnimationFrame(moveRaf); moveRaf = 0; }
+    bar.classList.remove('press', 'drag');
+    const target = e ? near(e.clientX).el : null;
+    cache = null;
+    target ? go(target) : set(active);
   }
   bar.addEventListener('pointerup', e => end(e));
   addEventListener('pointercancel', () => end(null));
@@ -83,11 +116,6 @@
   }, { rootMargin: '-45% 0px -45% 0px' });
   document.querySelectorAll('main section[id]').forEach(s => io.observe(s));
 
-  // Bar berubah gelap saat melewati bagian Kontak yang berlatar gelap
-  const ct = document.getElementById('kontak');
-  const tone = () => bar.classList.toggle('dk', ct.getBoundingClientRect().top < innerHeight - 50);
-  addEventListener('scroll', tone, { passive: true }); tone();
-
   // Pembiasan tepi ala iOS (Chromium saja): peta displacement per elemen, plus dispersi warna di gelembung
   if (/Chrome\//.test(navigator.userAgent)) {
     document.documentElement.classList.add('lens');
@@ -102,71 +130,141 @@
       const dm = (s, res) => mk('feDisplacementMap', { in: 'SourceGraphic', in2: 'm', scale: s, xChannelSelector: 'R', yChannelSelector: 'G', result: res });
       f.append(im);
       if (chroma) {
-        [['r', .8], ['g', 1], ['b', 1.2]].forEach(([c, k]) => f.append(dm(max * 2 * k, 'd' + c), mk('feColorMatrix', { in: 'd' + c, type: 'matrix', values: CH[c], result: c })));
+        [['r', .9], ['g', 1], ['b', 1.1]].forEach(([c, k]) => f.append(dm(max * 2 * k, 'd' + c), mk('feColorMatrix', { in: 'd' + c, type: 'matrix', values: CH[c], result: c })));
         f.append(mk('feBlend', { in: 'r', in2: 'g', mode: 'screen', result: 'rg' }), mk('feBlend', { in: 'rg', in2: 'b', mode: 'screen' }));
       } else f.append(dm(max * 2));
       svg.append(f);
+      const c = document.createElement('canvas'), g = c.getContext('2d');
+      let lastKey = '', timer = 0;
       const build = () => {
         const w = Math.round(el.offsetWidth), h = Math.round(el.offsetHeight);
         if (!w || !h) return;
-        const d = Math.min(devicePixelRatio || 1, 2), c = document.createElement('canvas');
-        c.width = w * d; c.height = h * d;
-        const g = c.getContext('2d'), img = g.createImageData(c.width, c.height), r = Math.min(w, h) / 2, b = Math.min(r, bez);
-        for (let y = 0; y < c.height; y++) for (let x = 0; x < c.width; x++) {
-          const px = (x + .5) / d, py = (y + .5) / d;
-          const vx = px - Math.max(r, Math.min(w - r, px)), vy = py - Math.max(r, Math.min(h - r, py));
-          const dist = Math.hypot(vx, vy), e = r - dist;
-          let dx = 0, dy = 0;
-          if (e < b && dist > 0) { const t = 1 - Math.max(e, 0) / b, m = t * t; dx = -vx / dist * m; dy = -vy / dist * m; }
-          const i = (y * c.width + x) * 4;
-          img.data[i] = 128 + dx * 127; img.data[i + 1] = 128 + dy * 127; img.data[i + 2] = 128; img.data[i + 3] = 255;
+        const key = w + 'x' + h;
+        if (key === lastKey) return;
+        lastKey = key;
+        c.width = w; c.height = h;
+        const img = g.createImageData(w, h), data = img.data, r = Math.min(w, h) / 2, b = Math.min(r, bez);
+        for (let y = 0; y < h; y++) {
+          const py = y + .5, vy = py - Math.max(r, Math.min(h - r, py));
+          for (let x = 0; x < w; x++) {
+            const px = x + .5, vx = px - Math.max(r, Math.min(w - r, px));
+            const dist = Math.hypot(vx, vy), e = r - dist;
+            let dx = 0, dy = 0;
+            if (e < b && dist > 0) { const t = 1 - Math.max(e, 0) / b, m = t * t; dx = -vx / dist * m; dy = -vy / dist * m; }
+            const i = (y * w + x) * 4;
+            data[i] = 128 + dx * 127; data[i + 1] = 128 + dy * 127; data[i + 2] = 128; data[i + 3] = 255;
+          }
         }
         g.putImageData(img, 0, 0);
         im.setAttribute('width', w); im.setAttribute('height', h); im.setAttribute('href', c.toDataURL());
         if (fx) el.style.backdropFilter = 'url(#' + id + ') ' + fx;
       };
-      // Bangun ulang peta maksimal sekali per frame (gelembung berubah ukuran saat ditekan)
-      let raf = 0;
-      new ResizeObserver(() => { cancelAnimationFrame(raf); raf = requestAnimationFrame(build); }).observe(el);
+      // Throttle agar tidak re-encode PNG tiap frame selama transisi ukuran
+      new ResizeObserver(() => {
+        if (!lastKey) { build(); return; }
+        clearTimeout(timer);
+        timer = setTimeout(build, 90);
+      }).observe(el);
     }
     lens(document.querySelector('.bgl'), 'lgB', 16, 14, false, 'blur(14px) saturate(180%) brightness(1.08)');
-    lens(ind, 'lgI', 18, 12, true, null);
+    lens(ind, 'lgI', 16, 9, true, null);
     document.querySelectorAll('.glass:not(.tabs)').forEach((el, n) => lens(el, 'lg' + n, 16, 14, false, 'blur(8px) saturate(170%) brightness(1.08)'));
 
-    // Bulan sabit RGB ala iOS 26: hanya di bagian gelembung yang keluar dari bar (atas-bawah, atau ujung kiri-kanan).
-    // Hanya pinggiran warnanya yang digambar; bagian tengah sabit transparan agar warnanya mengikuti latar di belakang (kaca bening).
-    const CAP = [[0, 255, 245, 210, .35], [.1, 160, 230, 110, .45], [.2, 255, 45, 45, .8], [.3, 255, 60, 80, 0], [.68, 30, 70, 255, 0], [.76, 30, 70, 255, .8], [.85, 40, 210, 235, .6], [.93, 90, 230, 110, .4], [1, 255, 160, 90, 0]];
-    const pal = t => { let k = 1; while (k < CAP.length - 1 && CAP[k][0] < t) k++; const a = CAP[k - 1], z = CAP[k], u = (t - a[0]) / (z[0] - a[0]); return a.slice(1).map((v, j) => v + (z[j + 1] - v) * u); };
-    // Jarak bertanda ke bentuk kapsul: negatif = di dalam
+    // Bulan sabit RGB+ tipis ala iOS 26: seimbang (merah, emas, hijau, cyan, ungu) dan sangat tipis agar efek liquid transparan dominan.
+    const CAP = [
+      [0,    255, 245, 230, .20],
+      [.045, 255,  95, 115, .36],
+      [.09,  255, 195,  95, .28],
+      [.135, 115, 235, 170, .20],
+      [.17,  115, 235, 170,   0],
+      [.83,  195, 115, 255,   0],
+      [.865, 195, 115, 255, .28],
+      [.905,  95, 210, 245, .24],
+      [.945, 125, 235, 165, .24],
+      [.975, 255, 120, 120, .24],
+      [1,    255, 200, 140,   0]
+    ];
+    // Precompute LUT 256 entri agar loop piksel bebas alokasi memori
+    const LUT = new Uint8ClampedArray(256 * 4);
+    for (let s = 0; s < 256; s++) {
+      const t = s / 255;
+      let k = 1; while (k < CAP.length - 1 && CAP[k][0] < t) k++;
+      const a = CAP[k - 1], z = CAP[k], u = (t - a[0]) / (z[0] - a[0]);
+      LUT[s * 4]     = a[1] + (z[1] - a[1]) * u;
+      LUT[s * 4 + 1] = a[2] + (z[2] - a[2]) * u;
+      LUT[s * 4 + 2] = a[3] + (z[3] - a[3]) * u;
+      LUT[s * 4 + 3] = (a[4] + (z[4] - a[4]) * u) * 255;
+    }
     const sd = (px, py, x0, y0, w, h) => { const r = Math.min(w, h) / 2, vx = px - Math.max(x0 + r, Math.min(x0 + w - r, px)), vy = py - Math.max(y0 + r, Math.min(y0 + h - r, py)); return Math.hypot(vx, vy) - r; };
-    let last = '', rimRaf = 0, until = 0;
-    function rimBuild() {
+    const rimCanvas = document.createElement('canvas'), rimCtx = rimCanvas.getContext('2d');
+    let last = '', rimRaf = 0, until = 0, lastBuild = 0;
+    function rimBuild(now) {
+      if (now - lastBuild < 48) return;
       const w = ind.offsetWidth, h = ind.offsetHeight;
       if (!w || !h) return;
       const A = ind.getBoundingClientRect(), B = bar.getBoundingClientRect(), k = A.width / w || 1;
       const bx = (B.left - A.left) / k, by = (B.top - A.top) / k, bw = B.width / k, bh = B.height / k;
-      const key = [w, h, bx, by, bw, bh].map(Math.round).join();
+      // Saat gelembung di tengah bar (tidak menyentuh ujung kiri/kanan), bentuk sabit tidak berubah → skip rebuild!
+      const br = bh / 2;
+      const effBx = bx < -br && bx + bw > w + br ? -999 : Math.round(bx / 3) * 3;
+      const key = [Math.round(w / 2), Math.round(h / 2), effBx, Math.round(by / 2), Math.round(bw / 2), Math.round(bh / 2)].join();
       if (key === last) return;
-      last = key;
-      const d = Math.min(devicePixelRatio || 1, 2), c = document.createElement('canvas');
-      c.width = Math.round(w * d); c.height = Math.round(h * d);
-      const cx = c.getContext('2d'), img = cx.createImageData(c.width, c.height);
-      for (let y = 0; y < c.height; y++) for (let x = 0; x < c.width; x++) {
-        const px = (x + .5) / d, py = (y + .5) / d, e1 = -sd(px, py, 0, 0, w, h);
-        if (e1 < 0) continue;
-        const e2 = sd(px, py, bx, by, bw, bh);
-        if (e2 <= 0) continue;
-        const [cr, cg, cb, ca] = pal(e1 / (e1 + e2)), i = (y * c.width + x) * 4;
-        img.data[i] = cr; img.data[i + 1] = cg; img.data[i + 2] = cb; img.data[i + 3] = 255 * ca;
+      last = key; lastBuild = now;
+      const scale = 0.75;
+      const cw = Math.max(1, Math.round(w * scale)), ch = Math.max(1, Math.round(h * scale));
+      rimCanvas.width = cw; rimCanvas.height = ch;
+      const img = rimCtx.createImageData(cw, ch), data = img.data;
+      for (let y = 0; y < ch; y++) {
+        const py = (y + .5) / scale;
+        for (let x = 0; x < cw; x++) {
+          const px = (x + .5) / scale, e1 = -sd(px, py, 0, 0, w, h);
+          if (e1 < 0) continue;
+          const e2 = sd(px, py, bx, by, bw, bh);
+          if (e2 <= 0) continue;
+          const idx = Math.min(255, Math.max(0, (e1 / (e1 + e2) * 255) | 0)) * 4;
+          const a = LUT[idx + 3];
+          if (!a) continue;
+          const i = (y * cw + x) * 4;
+          data[i] = LUT[idx]; data[i + 1] = LUT[idx + 1]; data[i + 2] = LUT[idx + 2]; data[i + 3] = a;
+        }
       }
-      cx.putImageData(img, 0, 0);
-      ind.style.setProperty('--rim', 'url(' + c.toDataURL() + ')');
+      rimCtx.putImageData(img, 0, 0);
+      ind.style.setProperty('--rim', 'url(' + rimCanvas.toDataURL() + ')');
     }
-    // Ikuti posisi gelembung tiap frame selama ditekan/digeser, dan sebentar setelah dilepas
-    const tick = () => { rimBuild(); rimRaf = (bar.classList.contains('press') || performance.now() < until) ? requestAnimationFrame(tick) : 0; };
+    const tick = now => { rimBuild(now); rimRaf = (bar.classList.contains('press') || now < until) ? requestAnimationFrame(tick) : 0; };
     new MutationObserver(() => {
-      if (!bar.classList.contains('press')) until = performance.now() + 600;
+      if (!bar.classList.contains('press')) until = performance.now() + 350;
       if (!rimRaf) rimRaf = requestAnimationFrame(tick);
     }).observe(bar, { attributes: true, attributeFilter: ['class'] });
   }
+})();
+
+// Subtle Obsidian Glass reveal & in-page link scrolling (separate from navigation bar)
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  document.querySelectorAll('.og-scroll').forEach(link => {
+    link.addEventListener('click', e => {
+      const id = link.getAttribute('href');
+      if (!id || !id.startsWith('#')) return;
+      const target = document.querySelector(id);
+      if (!target) return;
+      e.preventDefault();
+      target.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
+    });
+  });
+
+  const nodes = document.querySelectorAll('[data-reveal]');
+  if (!nodes.length || reduce || !('IntersectionObserver' in window)) return;
+
+  document.documentElement.classList.add('js-ready');
+  const ro = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-in');
+      ro.unobserve(entry.target);
+    });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+
+  nodes.forEach(el => ro.observe(el));
 })();

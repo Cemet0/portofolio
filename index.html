@@ -5,64 +5,155 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Nabil Ananda Putra | Portofolio Web Developer</title>
 <meta name="description" content="Mahasiswa Teknik Informatika Universitas Dian Nuswantoro yang sedang belajar web development. Portofolio berisi proyek HTML, CSS, JavaScript, PHP, Python, dan MySQL.">
-<meta name="theme-color" content="#E7EEF0">
+<meta name="theme-color" content="#080808">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Instrument+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;600;700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="style.css">
 <script src="script.js" defer></script>
 </head>
 <body>
 
+<header class="masthead">
+  <div class="wrap masthead-inner">
+    <a class="brand og-scroll" href="#beranda" aria-label="Micellar — kembali ke beranda">Micellar<span>.</span></a>
+    <span class="meta-tag">Semarang, ID</span>
+  </div>
+</header>
+
 <main>
 <section id="beranda" class="hero">
-  <div class="wrap">
-    <div>
-      <h1>Nabil Ananda Putra</h1>
-      <p>Mahasiswa Teknik Informatika Universitas Dian Nuswantoro yang sedang belajar membangun web, dari HTML dan CSS sampai PHP dan MySQL.</p>
-      <a class="solid" href="#karya">Lihat karya saya</a>
+  <div class="wrap hero-grid">
+    <div class="hero-copy" data-reveal>
+      <p class="eyebrow">Portfolio — Web Development</p>
+      <h1>Nabil Ananda<br><span class="muted">Putra.</span></h1>
+      <p class="hero-desc">Jika Hujan Bisa Turun Tanpa Diminta, Maka Aku Bisa Menahan Rasa Kecewa Dengan Tertawa.</p>
+      <div class="hero-actions">
+        <a class="og-glass og-btn og-scroll" href="#karya">
+          <span>Lihat karya saya</span>
+          <svg class="ic" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8h9m0 0-3.5-3.5M12.5 8 9 11.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
     </div>
-    <div class="drop"><img src="assets/images/potoProfil.png" alt="Foto Nabil Ananda Putra"></div>
+    <figure class="portrait" data-reveal>
+      <div class="portrait-frame" tabindex="0">
+        <img class="portrait-base" src="assets/images/Spiderman.png" alt="Spiderman">
+        <img class="portrait-reveal" src="assets/images/potoProfil.png" alt="Foto Nabil Ananda Putra">
+      </div>
+    </figure>
   </div>
 </section>
 
-<section id="tentang">
+<section id="tentang" class="section-band">
   <div class="wrap">
-    <h2>Tentang saya</h2>
+    <div class="section-head" data-reveal>
+      <span class="section-index">01</span>
+      <h2>Tentang saya</h2>
+    </div>
+
     <div class="about">
-      <p class="lead">Saya mahasiswa Teknik Informatika dengan minat besar pada web development. Masih belajar, dan terus berlatih supaya bisa membuat solusi digital yang bermanfaat.</p>
-      <div>
-        <h3>Teknologi</h3>
-        <ul class="tags big"><li>HTML5</li><li>CSS3</li><li>JavaScript</li><li>PHP</li><li>Python</li><li>MySQL</li><li>Java</li></ul>
-        <h3>Pendidikan</h3>
-        <dl class="edu">
-          <dt>2024 – sekarang</dt><dd><b>Universitas Dian Nuswantoro</b>Teknik Informatika, semester 4</dd>
-          <dt>2020 – 2023</dt><dd><b>SMA Kesatrian 1 Semarang</b>Jurusan IPA, mulai tertarik pada teknologi</dd>
-        </dl>
+      <div class="about-bio" data-reveal>
+        <p class="lead">Saya mahasiswa Teknik Informatika dengan minat besar pada web development. Masih belajar, dan terus berlatih supaya bisa membuat solusi digital yang bermanfaat.</p>
+        <div class="edu-block">
+          <h3 class="subhead">Pendidikan</h3>
+          <dl class="edu">
+            <div class="edu-row">
+              <dt>2024 – sekarang</dt>
+              <dd><b>Universitas Dian Nuswantoro</b><span>Teknik Informatika, semester 4</span></dd>
+            </div>
+            <div class="edu-row">
+              <dt>2020 – 2023</dt>
+              <dd><b>SMA Kesatrian 1 Semarang</b><span>Jurusan IPA, mulai tertarik pada teknologi</span></dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+
+      <div class="stack-panel" data-reveal>
+        <h3 class="subhead">Teknologi</h3>
+        <div class="stack-groups">
+          <div class="stack-group">
+            <span class="stack-label">Frontend</span>
+            <ul class="stack-list">
+              <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="" width="15" height="15"><span>HTML5</span></li>
+              <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="" width="15" height="15"><span>CSS3</span></li>
+              <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="" width="15" height="15"><span>JavaScript</span></li>
+            </ul>
+          </div>
+          <div class="stack-group">
+            <span class="stack-label">Backend &amp; Bahasa</span>
+            <ul class="stack-list">
+              <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-plain.svg" alt="" width="15" height="15"><span>PHP</span></li>
+              <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="" width="15" height="15"><span>Python</span></li>
+              <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="" width="15" height="15"><span>Java</span></li>
+            </ul>
+          </div>
+          <div class="stack-group">
+            <span class="stack-label">Database</span>
+            <ul class="stack-list">
+              <li><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="" width="15" height="15"><span>MySQL</span></li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<section id="karya">
+<section id="karya" class="section-band">
   <div class="wrap">
-    <h2>Karya</h2>
-    <div class="work">
-      <article class="pj" style="--c:#CFE0F5">
-        <div class="shot"><img src="assets/images/website_projek.png" alt="Tampilan website PHP dan Bootstrap" loading="lazy"></div>
-        <div><h3>Website PHP &amp; Bootstrap</h3><p>Website dinamis yang responsif, dibangun dengan PHP dan Bootstrap.</p><ul class="tags"><li>PHP</li><li>Bootstrap</li><li>MySQL</li></ul></div>
+    <div class="section-head" data-reveal>
+      <span class="section-index">02</span>
+      <h2>Karya</h2>
+    </div>
+
+    <div class="gallery">
+      <article class="pj pj-wide" data-reveal>
+        <div class="shot">
+          <img src="assets/images/website_projek.png" alt="Tampilan website PHP dan Bootstrap" loading="lazy">
+        </div>
+        <div class="pj-body">
+          <span class="pj-num">01</span>
+          <h3>Website PHP &amp; Bootstrap</h3>
+          <p>Website dinamis yang responsif, dibangun dengan PHP dan Bootstrap.</p>
+          <ul class="tags"><li>PHP</li><li>Bootstrap</li><li>MySQL</li></ul>
+        </div>
       </article>
-      <article class="pj" style="--c:#E2DDF6">
-        <div class="shot"><img src="assets/images/figma_projek.png" alt="Desain UI/UX di Figma" loading="lazy"></div>
-        <div><h3>Desain UI/UX Figma</h3><p>Rancangan antarmuka modern yang mengutamakan pengalaman pengguna.</p><ul class="tags"><li>Figma</li><li>UI/UX</li><li>Prototyping</li></ul></div>
+
+      <article class="pj" data-reveal>
+        <div class="shot">
+          <img src="assets/images/figma_projek.png" alt="Desain UI/UX di Figma" loading="lazy">
+        </div>
+        <div class="pj-body">
+          <span class="pj-num">02</span>
+          <h3>Desain UI/UX Figma</h3>
+          <p>Rancangan antarmuka modern yang mengutamakan pengalaman pengguna.</p>
+          <ul class="tags"><li>Figma</li><li>UI/UX</li><li>Prototyping</li></ul>
+        </div>
       </article>
-      <article class="pj" style="--c:#C7E8D5">
-        <div class="shot"><img src="assets/images/projekMictify.png" alt="Aplikasi streaming musik Mictify" loading="lazy"></div>
-        <div><h3>Mictify, streaming musik</h3><p>Aplikasi pemutar musik ala Spotify dengan playlist dan tampilan modern.</p><ul class="tags"><li>JavaScript</li><li>HTML/CSS</li><li>Audio API</li></ul></div>
+
+      <article class="pj" data-reveal>
+        <div class="shot">
+          <img src="assets/images/projekMictify.png" alt="Aplikasi streaming musik Mictify" loading="lazy">
+        </div>
+        <div class="pj-body">
+          <span class="pj-num">03</span>
+          <h3>Mictify, streaming musik</h3>
+          <p>Aplikasi pemutar musik ala Spotify dengan playlist dan tampilan modern.</p>
+          <ul class="tags"><li>JavaScript</li><li>HTML/CSS</li><li>Audio API</li></ul>
+        </div>
       </article>
-      <article class="pj" style="--c:#F6E3C8">
-        <div class="shot"><img src="assets/images/arduino_projek.png" alt="Proyek Arduino di Tinkercad" loading="lazy"></div>
-        <div><h3>Arduino Tinkercad</h3><p>Simulasi dan pengembangan proyek Arduino untuk aplikasi IoT.</p><ul class="tags"><li>Arduino</li><li>C++</li><li>IoT</li></ul></div>
+
+      <article class="pj pj-wide pj-flip" data-reveal>
+        <div class="shot">
+          <img src="assets/images/arduino_projek.png" alt="Proyek Arduino di Tinkercad" loading="lazy">
+        </div>
+        <div class="pj-body">
+          <span class="pj-num">04</span>
+          <h3>Arduino Tinkercad</h3>
+          <p>Simulasi dan pengembangan proyek Arduino untuk aplikasi IoT.</p>
+          <ul class="tags"><li>Arduino</li><li>C++</li><li>IoT</li></ul>
+        </div>
       </article>
     </div>
   </div>
@@ -70,15 +161,36 @@
 
 <section id="kontak" class="contact">
   <div class="wrap">
-    <h2>Ayo ngobrol.</h2>
-    <p>Punya proyek atau sekadar ingin menyapa? Kirim pesan lewat salah satu kanal ini.</p>
-    <div class="links">
-      <a class="glass dk pill" href="mailto:cemetbigaill@gmail.com"><span>Email</span></a>
-      <a class="glass dk pill" href="https://github.com/Cemet0" target="_blank" rel="noopener noreferrer"><span>GitHub @Cemet0</span></a>
-      <a class="glass dk pill" href="https://www.instagram.com/itsmecemet/" target="_blank" rel="noopener noreferrer"><span>Instagram @itsmecemet</span></a>
-      <a class="glass dk pill" href="https://www.tiktok.com/@micellar969" target="_blank" rel="noopener noreferrer"><span>TikTok @micellar969</span></a>
+    <div class="section-head" data-reveal>
+      <span class="section-index">03</span>
+      <h2>Ayo ngobrol.</h2>
     </div>
-    <small>© 2026 Nabil Ananda Putra</small>
+    <p class="contact-desc" data-reveal>Punya proyek atau sekadar ingin menyapa? Kirim pesan lewat salah satu kanal ini.</p>
+    <div class="links" data-reveal>
+      <a class="og-glass og-pill" href="mailto:cemetbigaill@gmail.com">
+        <span>Email</span>
+        <span class="arrow" aria-hidden="true">↗</span>
+      </a>
+      <a class="og-glass og-pill" href="https://github.com/Cemet0" target="_blank" rel="noopener noreferrer">
+        <span>GitHub @Cemet0</span>
+        <span class="arrow" aria-hidden="true">↗</span>
+      </a>
+      <a class="og-glass og-pill" href="https://www.linkedin.com/in/nabil-putra-5406b5443" target="_blank" rel="noopener noreferrer">
+        <span>LinkedIn</span>
+        <span class="arrow" aria-hidden="true">↗</span>
+      </a>
+      <a class="og-glass og-pill" href="https://www.instagram.com/itsmecemet/" target="_blank" rel="noopener noreferrer">
+        <span>Instagram @itsmecemet</span>
+        <span class="arrow" aria-hidden="true">↗</span>
+      </a>
+      <a class="og-glass og-pill" href="https://www.tiktok.com/@micellar969" target="_blank" rel="noopener noreferrer">
+        <span>TikTok @micellar969</span>
+        <span class="arrow" aria-hidden="true">↗</span>
+      </a>
+    </div>
+    <footer class="site-footer">
+      <small>© 2026 Nabil Ananda Putra</small>
+    </footer>
   </div>
 </section>
 </main>
