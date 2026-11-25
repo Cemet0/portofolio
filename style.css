@@ -58,25 +58,44 @@ h3{font-size:1.125rem;font-weight:700;margin:0 0 .9rem}
 .pill{display:inline-flex;align-items:center;height:52px;padding:0 1.5rem;border-radius:99px;text-decoration:none;font-weight:600;transition:transform .45s var(--spring)}
 .pill>*{position:relative;z-index:1}
 .pill:hover{transform:scale(1.04)}.pill:active{transform:scale(1.08)}
+.pill:active::before{padding:2.5px;background:conic-gradient(from 210deg,#ff4d6d,#8b5cff,#22d3ee,#34e39a,#ffd23f,#ff4d6d)}
 @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.glass{background:rgba(245,249,250,.94)}.glass.dk{background:#24384A}}
 
 /* FabBar: 62px, kapsul + tombol aksi bulat, jarak 8px, padding 21px */
 .fab{position:fixed;z-index:50;left:50%;bottom:calc(21px + env(safe-area-inset-bottom,0px));width:min(calc(100% - 42px),400px);height:62px;transform:translateX(-50%);display:flex;gap:8px}
-.tabs{flex:1;display:flex;padding:2px;border-radius:99px;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent;transition:transform .5s var(--spring)}
-.tabs.press{transform:scale(1.04)}
+.tabs{isolation:isolate;flex:1;display:flex;padding:2px;border-radius:99px;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent;transition:transform .5s var(--spring),background .3s,box-shadow .3s}
+.tabs.press{transform:scale(1.02)}
 .tab{position:relative;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;font:600 10px/1.2 'Instrument Sans',sans-serif;color:rgba(14,31,42,.72);text-decoration:none;-webkit-touch-callout:none;-webkit-user-drag:none}
 .tab svg{width:20px;height:20px;fill:currentColor;pointer-events:none}.tab span{pointer-events:none}
-.ind{position:absolute;z-index:1;top:2px;bottom:2px;left:2px;width:var(--w,25%);transform:translateX(var(--x,0px));border-radius:99px;overflow:hidden;pointer-events:none;background:rgba(255,255,255,.38);box-shadow:inset 1.5px 1.5px 1px rgba(255,255,255,.95),inset -1px -1px 1px rgba(255,255,255,.55),inset 0 0 12px rgba(255,255,255,.3),0 3px 12px rgba(14,31,42,.16);transition:transform .5s var(--spring),width .5s var(--spring),scale .35s var(--spring),background .3s}
-.tabs.press .ind{scale:1.1 1.14;background:rgba(255,255,255,.6)}
-/* Salinan aksen di dalam indikator: warnanya hanya tampak di bawah kaca, seperti tab bar iOS */
-.ind .row{position:absolute;top:-2px;bottom:-2px;left:-2px;width:var(--tw);display:flex;padding:2px;transform:translateX(calc(var(--x,0px)*-1));transition:transform .5s var(--spring)}
-.ind .tab{color:var(--tint-d)}
-.tabs.drag .ind{transition:transform .08s linear,width .2s,scale .35s var(--spring),background .2s}
-.tabs.drag .row{transition:transform .08s linear}
+/* Gelembung lensa: idle = pil tipis; ditekan = melebar dan keluar dari bar, isi membesar, ada cincin pelangi atas-bawah */
+.tabs{--g:0px;--gy:0px}
+.tabs.press{--g:16px;--gy:13px}
+.ind{position:absolute;z-index:1;top:calc(2px - var(--gy));bottom:calc(2px - var(--gy));left:calc(2px - var(--g));width:calc(var(--w,25%) + 2*var(--g));translate:var(--x,0px) 0;border-radius:99px;overflow:hidden;pointer-events:none;background:rgba(255,255,255,.34);box-shadow:inset 0 0 0 1px rgba(255,255,255,.35),0 2px 8px rgba(14,31,42,.1);transition:translate .5s var(--spring),width .5s var(--spring),left .5s var(--spring),top .5s var(--spring),bottom .5s var(--spring),background .3s,box-shadow .3s}
+.tabs.press .ind{background:rgba(255,255,255,.2);-webkit-backdrop-filter:blur(.5px) saturate(160%) brightness(1.25);backdrop-filter:blur(.5px) saturate(160%) brightness(1.25);box-shadow:inset 0 0 0 1px rgba(255,255,255,.75),inset 0 0 18px rgba(255,255,255,.4),0 14px 30px rgba(14,31,42,.28)}
+.lens .tabs.press .ind{backdrop-filter:url(#lgI) blur(.5px) saturate(160%) brightness(1.25)}
+/* Dispersi warna atas & bawah, dibuat mirip pembiasan RGB di sisi kiri-kanan (pita pelangi mengikuti lengkung tepi) */
+.ind::before{content:"";position:absolute;z-index:2;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .3s;
+  background:linear-gradient(180deg,rgba(255,70,120,.6),rgba(255,140,60,.65) 2px,rgba(255,205,90,.45) 3.5px,rgba(140,230,180,.2) 4.6px,rgba(70,160,255,.6) 6px,rgba(150,95,255,.55) 8px,rgba(210,90,255,0) 10px,transparent calc(100% - 10px),rgba(210,90,255,0) calc(100% - 10px),rgba(150,95,255,.55) calc(100% - 8px),rgba(70,160,255,.6) calc(100% - 6px),rgba(140,230,180,.2) calc(100% - 4.6px),rgba(255,205,90,.45) calc(100% - 3.5px),rgba(255,140,60,.65) calc(100% - 2px),rgba(255,70,120,.6));
+  -webkit-mask:linear-gradient(90deg,transparent 4%,#000 30%,#000 70%,transparent 96%);mask:linear-gradient(90deg,transparent 4%,#000 30%,#000 70%,transparent 96%)}
+/* Chromium: bulan sabit RGB ala iOS 26 digambar di script.js, hanya di bagian gelembung yang keluar dari bar */
+.lens .ind::before{background:var(--rim,none) center/100% 100% no-repeat;-webkit-mask:none;mask:none}
+.tabs.press .ind::before{opacity:1}
+.ind .row{position:absolute;top:calc(-2px + var(--gy));bottom:calc(-2px + var(--gy));left:calc(-2px + var(--g));width:var(--tw);display:flex;padding:2px;translate:calc(var(--x,0px)*-1) 0;transform-origin:var(--cx,50%) 50%;transition:translate .5s var(--spring),scale .5s var(--spring),left .5s var(--spring),top .5s var(--spring),bottom .5s var(--spring),transform-origin .5s var(--spring)}
+.tabs.press .ind .row{scale:1.18}
+.ind .tab{color:var(--tint-d);transition:color .25s}
+.tabs.press .ind .tab{color:rgba(14,31,42,.62)}
+.tabs.drag .ind{transition:translate .08s linear,width .2s,left .35s var(--spring),top .35s var(--spring),bottom .35s var(--spring),background .3s,box-shadow .3s}
+.tabs.drag .row{transition:translate .08s linear,scale .5s var(--spring),left .35s var(--spring),top .35s var(--spring),bottom .35s var(--spring),transform-origin .08s linear}
+.tab.under{opacity:0}
+.bgl{position:absolute;inset:0;z-index:-1;border-radius:inherit;pointer-events:none;-webkit-backdrop-filter:blur(14px) saturate(180%) brightness(1.08);backdrop-filter:blur(14px) saturate(180%) brightness(1.08)}
+.tabs.glass{-webkit-backdrop-filter:none;backdrop-filter:none}
 
 .tabs.dk .tab{color:rgba(255,255,255,.78)}
+.tabs.dk{background:rgba(8,18,28,.55)}
 .tabs.dk .ind{background:rgba(255,255,255,.2)}
 .tabs.dk .ind .tab{color:#8BE4F5}
+.tabs.dk.press .ind{background:rgba(255,255,255,.07)}
+.tabs.dk.press .ind .tab{color:rgba(255,255,255,.7)}
 
 @media(max-width:760px){
   .hero .wrap{grid-template-columns:1fr}.drop{width:min(68%,280px);order:-1}
