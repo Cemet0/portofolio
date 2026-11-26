@@ -159,11 +159,14 @@
         im.setAttribute('width', w); im.setAttribute('height', h); im.setAttribute('href', c.toDataURL());
         if (fx) el.style.backdropFilter = 'url(#' + id + ') ' + fx;
       };
-      // Throttle agar tidak re-encode PNG tiap frame selama transisi ukuran
+      // Update ukuran feImage tiap frame (ringan, tanpa potong kotak), rebuild kanvas hanya setelah ukuran berhenti berubah
       new ResizeObserver(() => {
+        const w = Math.round(el.offsetWidth), h = Math.round(el.offsetHeight);
+        if (!w || !h) return;
+        im.setAttribute('width', w); im.setAttribute('height', h);
         if (!lastKey) { build(); return; }
         clearTimeout(timer);
-        timer = setTimeout(build, 90);
+        timer = setTimeout(build, 80);
       }).observe(el);
     }
     lens(document.querySelector('.bgl'), 'lgB', 16, 14, false, 'blur(14px) saturate(180%) brightness(1.08)');
